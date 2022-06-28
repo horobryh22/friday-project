@@ -2,8 +2,9 @@
   "name": "friday-project",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://horobryh22.github.io/friday-project",
+  "homepage": "https://horobryh22.github.io/",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.2",
     "axios": "^0.27.2",
     "gh-pages": "^4.0.0",
     "react": "^18.2.0",

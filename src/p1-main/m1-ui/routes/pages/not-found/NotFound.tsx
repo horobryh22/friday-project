@@ -1,9 +1,9 @@
 import React from 'react';
 
-export const TestPage = () => {
+export const NotFound = () => {
     return (
         <div>
-            Components
+            Page not found
         </div>
     );
 };

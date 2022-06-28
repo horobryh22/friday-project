@@ -2,7 +2,7 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 import classes from './Header.module.css'
 
-function Header() {
+export const Header = () => {
 
     const activeStyle = {
         color: 'rgba(255, 255, 255, 0.94)'
@@ -36,12 +36,10 @@ function Header() {
                     style={({isActive}) => isActive ? activeStyle : {}}
                 >Enter new password</NavLink>
                 <NavLink
-                    to={'/test_page'}
+                    to={'/'}
                     style={({isActive}) => isActive ? activeStyle : {}}
                 >Test page</NavLink>
             </header>
         </nav>
     )
 }
-
-export default Header;
