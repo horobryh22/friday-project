@@ -37,4 +37,10 @@
     color: #366EFF;
 }
 
+@media screen and (max-width: 450px) {
+    .wrapper {
+        width: 100%;
+    }
+}
+
 
