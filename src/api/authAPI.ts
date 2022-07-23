@@ -8,4 +8,7 @@ export const authAPI = {
     login: async (email: string, password: string, rememberMe: boolean) => {
         return instance.post(`auth/login`, { email, password, rememberMe });
     },
+    register: async (email: string, password: string) => {
+        return instance.post('auth/ register', { email, password });
+    },
 };
