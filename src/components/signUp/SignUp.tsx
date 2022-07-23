@@ -7,9 +7,13 @@ import { NavLink } from 'react-router-dom';
 
 import { StyledButton } from 'components/header/styles';
 import s from 'components/signUp/signUp.module.css';
+import { useAppDispatch } from 'hooks';
+import { registerUser } from 'store/middlewares/registerUser';
 import { ReturnComponentType } from 'types';
 
-const SignUp = (): ReturnComponentType => {
+export const SignUp = (): ReturnComponentType => {
+    const dispatch = useAppDispatch();
+
     const [visibility, setVisibility] = useState(false);
     const inputType = visibility ? 'text' : 'password';
 
@@ -26,6 +30,10 @@ const SignUp = (): ReturnComponentType => {
             <VisibilityIcon />
         </IconButton>
     );
+
+    const handleSubmit = (): void => {
+        dispatch(registerUser());
+    };
 
     return (
         <Paper elevation={3} className={s.wrapper}>
@@ -58,7 +66,12 @@ const SignUp = (): ReturnComponentType => {
                         />
                         {visible}
                     </div>
-                    <StyledButton className={s.button} variant="contained" type="submit">
+                    <StyledButton
+                        className={s.button}
+                        variant="contained"
+                        // type="submit"
+                        onClick={handleSubmit}
+                    >
                         Sign Up
                     </StyledButton>
                 </form>
@@ -72,5 +85,3 @@ const SignUp = (): ReturnComponentType => {
         </Paper>
     );
 };
-
-export default SignUp;
