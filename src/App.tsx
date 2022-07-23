@@ -1,21 +1,24 @@
 import React from 'react';
 
+import { Container } from '@mui/material';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { Header } from 'components/header/Header';
-import { ForgotPassword } from 'pages/forgotPassword/ForgotPassword';
-import { Login } from 'pages/login/Login';
-import { NotFound } from 'pages/notFound/NotFound';
-import { PasswordRecovery } from 'pages/passwordRecovery/PasswordRecovery';
-import { Profile } from 'pages/profile/Profile';
-import { Registration } from 'pages/registration/Registration';
+import { Header, Links } from 'components';
+import {
+    ForgotPassword,
+    Login,
+    NotFound,
+    PasswordRecovery,
+    Profile,
+    Registration,
+} from 'pages';
 import { ReturnComponentType } from 'types';
 
 const App = (): ReturnComponentType => {
     return (
         <BrowserRouter>
-            <div>
-                <Header />
+            <Header />
+            <Container fixed>
                 <Routes>
                     <Route path="/" element={<Login />} />
                     <Route path="login" element={<Login />} />
@@ -25,7 +28,8 @@ const App = (): ReturnComponentType => {
                     <Route path="enter_new_password" element={<ForgotPassword />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
-            </div>
+            </Container>
+            <Links />
         </BrowserRouter>
     );
 };
