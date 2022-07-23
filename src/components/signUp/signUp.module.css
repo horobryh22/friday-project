@@ -2,6 +2,8 @@
     width: 413px;
     text-align: center;
     padding: 20px 0;
+
+    margin: 60px auto;
 }
 
 
@@ -25,6 +27,14 @@
 .form .button {
     width: 90%;
     margin: 30px auto;
+}
+
+.tooltip {
+    opacity: .5;
+}
+
+.redirect {
+    color: #366EFF;
 }
 
 

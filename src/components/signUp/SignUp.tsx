@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { Container, IconButton, Paper, TextField } from '@mui/material';
+import { Button, Container, IconButton, Paper, TextField } from '@mui/material';
+import { NavLink } from 'react-router-dom';
 
 import { StyledButton } from 'components/header/styles';
 import s from 'components/signUp/signUp.module.css';
@@ -60,6 +61,12 @@ const SignUp = (): ReturnComponentType => {
                         Sign Up
                     </StyledButton>
                 </form>
+                <p className={s.tooltip}>Already have an account?</p>
+                <Button variant="text">
+                    <NavLink to="/login" className={s.redirect}>
+                        Sign in
+                    </NavLink>
+                </Button>
             </Container>
         </Paper>
     );
