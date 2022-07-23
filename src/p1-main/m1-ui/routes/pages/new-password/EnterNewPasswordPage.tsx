@@ -1,9 +1,7 @@
 import React from 'react';
 
-export const EnterNewPasswordPage = () => {
-    return (
-        <div>
-            Enter new password
-        </div>
-    );
+import { ReturnComponentType } from 'types';
+
+export const EnterNewPasswordPage = (): ReturnComponentType => {
+    return <div>Enter new password</div>;
 };

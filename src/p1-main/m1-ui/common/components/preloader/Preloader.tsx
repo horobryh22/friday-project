@@ -1,11 +1,13 @@
 import React from 'react';
-import preloader from '../../../assets/image/Preloader.gif';
+
 import classes from './Preloader.module.css';
 
-export const Preloader = () => {
+import { ReturnComponentType } from 'types';
+
+export const Preloader = (): ReturnComponentType => {
     return (
         <div className={classes.preloader}>
-            <img src={preloader} alt="preloader"/>
+            <img src="" alt="preloader" />
         </div>
     );
 };

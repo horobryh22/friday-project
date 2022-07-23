@@ -1,9 +1,7 @@
 import React from 'react';
 
-export const RegistrationPage = () => {
-    return (
-        <div>
-            Registration
-        </div>
-    );
+import { ReturnComponentType } from 'types';
+
+export const RegistrationPage = (): ReturnComponentType => {
+    return <div>Registration</div>;
 };

@@ -1,9 +1,7 @@
 import React from 'react';
 
-export const NotFound = () => {
-    return (
-        <div>
-            Page not found
-        </div>
-    );
+import { ReturnComponentType } from 'types';
+
+export const NotFound = (): ReturnComponentType => {
+    return <div>Page not found</div>;
 };

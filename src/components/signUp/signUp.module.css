@@ -1,0 +1,30 @@
+.wrapper {
+    width: 413px;
+    text-align: center;
+    padding: 20px 0;
+}
+
+
+.form {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+}
+
+.formGroup {
+    position: relative;
+}
+
+.formGroup button {
+    position: absolute;
+    top: 25px;
+    right: 0;
+}
+
+.form .button {
+    width: 90%;
+    margin: 30px auto;
+}
+
+

@@ -1,9 +1,7 @@
 import React from 'react';
 
-export const LoginPage = () => {
-    return (
-        <div>
-            Login
-        </div>
-    );
+import { ReturnComponentType } from 'types';
+
+export const LoginPage = (): ReturnComponentType => {
+    return <div>Login</div>;
 };

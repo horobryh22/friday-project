@@ -1,9 +1,7 @@
 import React from 'react';
 
-export const ProfilePage = () => {
-    return (
-        <div>
-            Profile
-        </div>
-    );
+import { ReturnComponentType } from 'types';
+
+export const ProfilePage = (): ReturnComponentType => {
+    return <div>Profile</div>;
 };
