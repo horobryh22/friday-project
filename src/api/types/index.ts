@@ -1,1 +1,5 @@
-export type { AddedUserType, RegisterUserErrorType } from './registerUserTypes';
+export type {
+    AddedUserType,
+    RegisterUserErrorType,
+    UserDataType,
+} from './registerUserTypes';

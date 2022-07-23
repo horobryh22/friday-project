@@ -1,3 +1,8 @@
+export type UserDataType = {
+    email: string;
+    password: string;
+};
+
 export type AddedUserType = {
     _id: string;
     email: string;
