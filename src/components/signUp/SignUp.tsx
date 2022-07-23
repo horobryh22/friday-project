@@ -11,18 +11,19 @@ import { ReturnComponentType } from 'types';
 
 const SignUp = (): ReturnComponentType => {
     const [visibility, setVisibility] = useState(false);
+    const inputType = visibility ? 'text' : 'password';
 
     const handleVisibility = (flag: boolean): void => {
         setVisibility(flag);
     };
 
     const visible = visibility ? (
-        <IconButton aria-label="visibility" onClick={() => handleVisibility(false)}>
-            <VisibilityIcon />
+        <IconButton aria-label="visibilityOff" onClick={() => handleVisibility(false)}>
+            <VisibilityOffIcon />
         </IconButton>
     ) : (
-        <IconButton aria-label="visibilityOff" onClick={() => handleVisibility(true)}>
-            <VisibilityOffIcon />
+        <IconButton aria-label="visibility" onClick={() => handleVisibility(true)}>
+            <VisibilityIcon />
         </IconButton>
     );
 
@@ -40,7 +41,7 @@ const SignUp = (): ReturnComponentType => {
                     <div className={s.formGroup}>
                         <TextField
                             fullWidth
-                            type="password"
+                            type={inputType}
                             margin="normal"
                             label="Password"
                             variant="standard"
@@ -50,7 +51,7 @@ const SignUp = (): ReturnComponentType => {
                     <div className={s.formGroup}>
                         <TextField
                             fullWidth
-                            type="password"
+                            type={inputType}
                             margin="normal"
                             label="Confirm Password"
                             variant="standard"
