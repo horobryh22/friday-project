@@ -7,10 +7,9 @@ import { AppThunkType } from 'store/types';
 export const registerUser =
     ({ email, password }: UserDataType): AppThunkType =>
     async () => {
-        let response;
-
         try {
-            response = await authAPI.register({ email, password });
+            await authAPI.register({ email, password });
+            window.location.href = 'login';
         } catch (err) {
             const error = err as AxiosError | RegisterUserErrorType;
 
@@ -20,6 +19,4 @@ export const registerUser =
                 console.warn(error.error);
             }
         }
-
-        return response;
     };
