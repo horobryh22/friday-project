@@ -3,23 +3,32 @@ import React, { useState } from 'react';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Button, Container, IconButton, Paper, TextField } from '@mui/material';
-import { FieldValues, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { NavLink } from 'react-router-dom';
 
 import { UserDataType } from 'api/types';
 import { StyledButton } from 'components/header/styles';
 import s from 'components/signUp/signUp.module.css';
+import { SignUpFormType } from 'components/signUp/types';
 import { useAppDispatch } from 'hooks';
 import { registerUser } from 'store/middlewares/registerUser';
 import { ReturnComponentType } from 'types';
+
+export const EmailRegExp = /^[\w][\w-.]*@[\w-]+\.[a-z]{2,7}$/i;
 
 export const SignUp = (): ReturnComponentType => {
     const dispatch = useAppDispatch();
 
     const [visibility, setVisibility] = useState(false);
+    const [passError, setPassError] = useState('');
+
     const inputType = visibility ? 'text' : 'password';
 
-    const { register, handleSubmit } = useForm();
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<SignUpFormType>({ mode: 'onBlur' });
 
     const handleVisibility = (flag: boolean): void => {
         setVisibility(flag);
@@ -35,9 +44,13 @@ export const SignUp = (): ReturnComponentType => {
         </IconButton>
     );
 
-    const submitHandler = (data: FieldValues): void => {
-        dispatch(registerUser(data as UserDataType));
-        console.log(data);
+    const submitHandler = (data: SignUpFormType): void => {
+        if (data.password === data.passwordConfirm) {
+            dispatch(registerUser(data as UserDataType));
+        } else {
+            console.log('pass not match!');
+            setPassError('passwords does not match');
+        }
     };
 
     return (
@@ -49,15 +62,32 @@ export const SignUp = (): ReturnComponentType => {
                     onSubmit={handleSubmit(data => submitHandler(data))}
                 >
                     <TextField
-                        {...register('email')}
+                        {...register('email', {
+                            required: true,
+                            pattern: {
+                                value: EmailRegExp,
+                                message: 'Not valid email',
+                            },
+                        })}
                         fullWidth
                         margin="normal"
-                        label="Email"
                         variant="standard"
+                        label="Email"
                     />
+                    {errors?.email && (
+                        <span className={s.error}>
+                            {errors.email.message || 'Required'}
+                        </span>
+                    )}
                     <div className={s.formGroup}>
                         <TextField
-                            {...register('password')}
+                            {...register('password', {
+                                required: true,
+                                minLength: {
+                                    value: 8,
+                                    message: 'Min length is 8',
+                                },
+                            })}
                             fullWidth
                             type={inputType}
                             margin="normal"
@@ -66,6 +96,13 @@ export const SignUp = (): ReturnComponentType => {
                         />
                         {visible}
                     </div>
+                    <span>
+                        {errors?.password && (
+                            <span className={s.error}>
+                                {errors.password.message || 'Required'}
+                            </span>
+                        )}
+                    </span>
                     <div className={s.formGroup}>
                         <TextField
                             {...register('passwordConfirm')}
@@ -77,6 +114,7 @@ export const SignUp = (): ReturnComponentType => {
                         />
                         {visible}
                     </div>
+                    {passError && <span className={s.error}>{passError}</span>}
                     <StyledButton className={s.button} variant="contained" type="submit">
                         Sign Up
                     </StyledButton>

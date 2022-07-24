@@ -23,7 +23,7 @@ export type RegisterUserErrorType = {
     isPassValid: boolean;
 };
 
-// export type RegisterUserType = {
+// export types RegisterUserType = {
 //     addedUser?: AddedUserType;
 //     error?: RegisterUserErrorType;
 // };

@@ -1,9 +1,9 @@
 // Actions...
 
-// export const setUsers = (): ... => ({ type: ... })
+// export const setUsers = (): ... => ({ types: ... })
 
-// export const addUsers = (): ... => ({ type: ... })
+// export const addUsers = (): ... => ({ types: ... })
 
-// export const removeUsers = (): ... => ({ type: ... })
+// export const removeUsers = (): ... => ({ types: ... })
 
 export {};

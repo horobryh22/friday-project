@@ -9,7 +9,7 @@ export const registerUser =
     async () => {
         try {
             await authAPI.register({ email, password });
-            window.location.href = 'login';
+            // window.location.href = 'login';
         } catch (err) {
             const error = err as AxiosError | RegisterUserErrorType;
 

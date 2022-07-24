@@ -37,10 +37,16 @@
     color: #366EFF;
 }
 
+.error {
+    color: red;
+}
+
 @media screen and (max-width: 450px) {
     .wrapper {
         width: 100%;
     }
 }
+
+
 
 
