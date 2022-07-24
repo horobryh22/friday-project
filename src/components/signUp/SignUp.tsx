@@ -4,7 +4,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Button, Container, IconButton, Paper, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import { UserDataType } from 'api/types';
 import { StyledButton } from 'components/header/styles';
@@ -18,6 +18,8 @@ export const EmailRegExp = /^[\w][\w-.]*@[\w-]+\.[a-z]{2,7}$/i;
 
 export const SignUp = (): ReturnComponentType => {
     const dispatch = useAppDispatch();
+
+    const navigate = useNavigate();
 
     const [visibility, setVisibility] = useState(false);
     const [passError, setPassError] = useState('');
@@ -47,6 +49,7 @@ export const SignUp = (): ReturnComponentType => {
     const submitHandler = (data: SignUpFormType): void => {
         if (data.password === data.passwordConfirm) {
             dispatch(registerUser(data as UserDataType));
+            navigate('/login');
         } else {
             console.log('pass not match!');
             setPassError('passwords does not match');
