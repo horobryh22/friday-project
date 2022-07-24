@@ -3,8 +3,7 @@ import React from 'react';
 import { Container } from '@mui/material';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { Header, Links } from 'components';
-import { ErrorSnackbar } from 'components/errorSnackbar/ErrorSnackbar';
+import { ErrorSnackbar, Header, Links } from 'components';
 import {
     ForgotPassword,
     SignIn,

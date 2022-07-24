@@ -5,7 +5,6 @@ import {
     FormControl,
     FormControlLabel,
     FormGroup,
-    FormHelperText,
     Grid,
     TextField,
 } from '@mui/material';
@@ -15,7 +14,7 @@ import { NavLink } from 'react-router-dom';
 import classes from './SignIn.module.css';
 import { SignInValuesType } from './types';
 
-import { StyledButton } from 'components/header/styles';
+import { FormBottomPart } from 'components';
 import { useAppDispatch, useVisibility } from 'hooks';
 import { login } from 'store';
 import { ReturnComponentType } from 'types';
@@ -128,19 +127,14 @@ export const SignIn = (): ReturnComponentType => {
                                 >
                                     Forgot password?
                                 </NavLink>
-                                <StyledButton
-                                    type="submit"
-                                    variant="contained"
-                                    color="primary"
-                                    style={{ marginTop: '30px' }}
-                                >
-                                    Sign In
-                                </StyledButton>
+                                <FormBottomPart
+                                    buttonName="Sign In"
+                                    helperText="Don’t have an account?"
+                                    linkText="Sign Up"
+                                />
                             </FormGroup>
                         </FormControl>
                     </form>
-                    <FormHelperText>{`Don't have an account?`}</FormHelperText>
-                    <NavLink to="/registration">Sign Up</NavLink>
                 </div>
             </Grid>
         </Grid>
