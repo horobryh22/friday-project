@@ -15,3 +15,8 @@
 .form {
     width: 100%;
 }
+
+.error {
+    height: 20px;
+    color: red
+}

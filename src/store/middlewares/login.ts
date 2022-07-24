@@ -1,11 +1,12 @@
 import { authAPI } from 'api';
+import { SignInValuesType } from 'pages';
 import { AppThunkType } from 'store/types';
 
 export const login =
-    (email: string, password: string, rememberMe: boolean): AppThunkType =>
-    (): void => {
+    (data: SignInValuesType): AppThunkType =>
+    async () => {
         try {
-            const response = authAPI.login(email, password, rememberMe);
+            const response = await authAPI.login(data);
 
             console.log(response);
         } catch (e) {
