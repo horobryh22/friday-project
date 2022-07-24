@@ -14,7 +14,7 @@ export const Header = (): ReturnComponentType => {
                 <Container>
                     <StyledToolbar>
                         <img src={logo} alt="logo" />
-                        <StyledButton variant="contained">Sign in</StyledButton>
+                        <StyledButton variant="contained">Sign In</StyledButton>
                     </StyledToolbar>
                 </Container>
             </StyledAppBar>

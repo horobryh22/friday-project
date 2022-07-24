@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import {
     Checkbox,
     FormControl,
@@ -9,41 +7,24 @@ import {
     FormGroup,
     FormHelperText,
     Grid,
-    IconButton,
     TextField,
-    Typography,
 } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
 import classes from './SignIn.module.css';
 
 import { StyledButton } from 'components/header/styles';
+import { useVisibility } from 'hooks/useVisibility/useVisibility';
 import { ReturnComponentType } from 'types';
 
 export const SignIn = (): ReturnComponentType => {
-    const [visibility, setVisibility] = useState(false);
-
-    const toggleVisibility = (flag: boolean): void => {
-        setVisibility(flag);
-    };
-
-    const visible = visibility ? (
-        <IconButton aria-label="visibility" onClick={() => toggleVisibility(false)}>
-            <VisibilityIcon />
-        </IconButton>
-    ) : (
-        <IconButton aria-label="visibilityOff" onClick={() => toggleVisibility(true)}>
-            <VisibilityOffIcon />
-        </IconButton>
-    );
+    const [visible, visibility] = useVisibility(false);
 
     return (
         <Grid container justifyContent="center">
             <Grid item justifyContent="center">
                 <div className={classes.formWrapper}>
-                    <Typography variant="h4" component="div">
-                        Sign in
-                    </Typography>
+                    <h1>Sign In</h1>
                     <form className={classes.form}>
                         <FormControl fullWidth>
                             <FormGroup>
