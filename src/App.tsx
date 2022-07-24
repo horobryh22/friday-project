@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Header, Links } from 'components';
 import {
     ForgotPassword,
-    Login,
+    SignIn,
     NotFound,
     PasswordRecovery,
     Profile,
@@ -20,8 +20,8 @@ const App = (): ReturnComponentType => {
             <Header />
             <Container fixed>
                 <Routes>
-                    <Route path="/" element={<Login />} />
-                    <Route path="login" element={<Login />} />
+                    <Route path="/" element={<SignIn />} />
+                    <Route path="login" element={<SignIn />} />
                     <Route path="registration" element={<Registration />} />
                     <Route path="profile" element={<Profile />} />
                     <Route path="password_recovery" element={<PasswordRecovery />} />
