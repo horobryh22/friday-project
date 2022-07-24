@@ -4,6 +4,7 @@ import { Container } from '@mui/material';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { Header, Links } from 'components';
+import { ErrorSnackbar } from 'components/errorSnackbar/ErrorSnackbar';
 import {
     ForgotPassword,
     SignIn,
@@ -30,6 +31,7 @@ const App = (): ReturnComponentType => {
                 </Routes>
             </Container>
             <Links />
+            <ErrorSnackbar />
         </BrowserRouter>
     );
 };

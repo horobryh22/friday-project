@@ -9,7 +9,7 @@ import {
     Grid,
     TextField,
 } from '@mui/material';
-import { useForm, Controller } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { NavLink } from 'react-router-dom';
 
 import classes from './SignIn.module.css';

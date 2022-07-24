@@ -1,5 +1,3 @@
-import { AnyAction } from 'redux';
+import { AuthActionsType } from 'store/actions';
 
-export type AppActionsType = AnyAction;
-
-// здесь будут экшены со всех редьюсеров
+export type AppActionsType = AuthActionsType;
