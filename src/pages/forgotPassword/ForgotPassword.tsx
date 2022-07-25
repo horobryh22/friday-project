@@ -7,9 +7,13 @@ import classes from './ForgotPassword.module.css';
 
 import { FormBottomPart } from 'components';
 import { EMAIL_RULES } from 'constant';
+import { useAppDispatch } from 'hooks';
+import { forgot } from 'store/middlewares';
 import { ReturnComponentType } from 'types';
 
 export const ForgotPassword = (): ReturnComponentType => {
+    const dispatch = useAppDispatch();
+
     const {
         control,
         handleSubmit,
@@ -22,7 +26,7 @@ export const ForgotPassword = (): ReturnComponentType => {
     });
 
     const onSubmit = ({ email }: { email: string }): void => {
-        console.log(email);
+        dispatch(forgot(email));
     };
 
     return (

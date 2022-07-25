@@ -1,20 +1,16 @@
 import axios, { AxiosError } from 'axios';
 
 import { authAPI } from 'api';
-import { REQUEST_STATUS } from 'enums';
-import { SignInValuesType } from 'pages';
 import { setAuthErrorAC } from 'store/actions';
-import { setAppStatusAC } from 'store/actions/app';
-import { setIsUserAuthAC } from 'store/actions/auth';
 import { AppThunkType } from 'store/types';
 
-export const login =
-    (data: SignInValuesType): AppThunkType =>
+export const forgot =
+    (email: string): AppThunkType =>
     async dispatch => {
         try {
-            dispatch(setAppStatusAC(REQUEST_STATUS.LOADING));
-            await authAPI.login(data);
-            dispatch(setIsUserAuthAC(true));
+            const response = await authAPI.forgot(email);
+
+            console.log(response);
         } catch (e) {
             const err = e as Error | AxiosError;
 
@@ -27,7 +23,5 @@ export const login =
             } else {
                 dispatch(setAuthErrorAC('Some error'));
             }
-        } finally {
-            dispatch(setAppStatusAC(REQUEST_STATUS.IDLE));
         }
     };

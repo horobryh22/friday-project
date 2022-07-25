@@ -16,6 +16,15 @@ export const authAPI = {
     login: (data: SignInValuesType) => {
         return instance.post<LoginResponseType>(`auth/login`, data);
     },
+    forgot: (email: string) => {
+        return instance.post('auth/forgot', {
+            email,
+            from: 'test-front-admin <hvi17@yandex.ru>',
+            message: `<div style="background-color: lime; padding: 15px">
+                          password recovery link: <a href='http://localhost:3000/#/set-new-password/$token$'>link</a>
+                      </div>`,
+        });
+    },
     register: ({ email, password }: UserDataType) => {
         return instance.post<AddedUserType | RegisterUserErrorType>('auth/register', {
             email,

@@ -1,23 +1,31 @@
 import React from 'react';
 
-import { Container, Grid } from '@mui/material';
+import { Container, Grid, LinearProgress } from '@mui/material';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { ErrorSnackbar, Header, Links } from 'components';
+import { PROGRESS_STYLE } from 'constant';
+import { REQUEST_STATUS } from 'enums';
+import { useTypedSelector } from 'hooks';
 import {
+    CheckEmail,
+    CreateNewPassword,
     ForgotPassword,
     NotFound,
-    CreateNewPassword,
     Profile,
     Registration,
     SignIn,
 } from 'pages';
-import { CheckEmail } from 'pages/checkEmail/CheckEmail';
 import { ReturnComponentType } from 'types';
 
 const App = (): ReturnComponentType => {
+    const status = useTypedSelector(state => state.app.status);
+
     return (
         <BrowserRouter>
+            {status === REQUEST_STATUS.LOADING && (
+                <LinearProgress style={PROGRESS_STYLE} color="primary" />
+            )}
             <Header />
             <Container fixed>
                 <Grid container justifyContent="center">
