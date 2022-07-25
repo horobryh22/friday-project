@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { Button, Container, IconButton, Paper, TextField } from '@mui/material';
+import { Button, Container, Paper, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { NavLink, useNavigate } from 'react-router-dom';
 
@@ -10,7 +8,7 @@ import { UserDataType } from 'api/types';
 import { StyledButton } from 'components/header/styles';
 import s from 'components/signUp/signUp.module.css';
 import { SignUpFormType } from 'components/signUp/types';
-import { useAppDispatch } from 'hooks';
+import { useAppDispatch, useVisibility } from 'hooks';
 import { registerUser } from 'store/middlewares/registerUser';
 import { ReturnComponentType } from 'types';
 
@@ -21,7 +19,7 @@ export const SignUp = (): ReturnComponentType => {
 
     const navigate = useNavigate();
 
-    const [visibility, setVisibility] = useState(false);
+    const [visible, visibility] = useVisibility(false);
     const [passError, setPassError] = useState('');
 
     const inputType = visibility ? 'text' : 'password';
@@ -31,20 +29,6 @@ export const SignUp = (): ReturnComponentType => {
         handleSubmit,
         formState: { errors },
     } = useForm<SignUpFormType>({ mode: 'onBlur' });
-
-    const handleVisibility = (flag: boolean): void => {
-        setVisibility(flag);
-    };
-
-    const visible = visibility ? (
-        <IconButton aria-label="visibilityOff" onClick={() => handleVisibility(false)}>
-            <VisibilityOffIcon />
-        </IconButton>
-    ) : (
-        <IconButton aria-label="visibility" onClick={() => handleVisibility(true)}>
-            <VisibilityIcon />
-        </IconButton>
-    );
 
     const submitHandler = (data: SignUpFormType): void => {
         if (data.password === data.passwordConfirm) {
