@@ -1,16 +1,16 @@
 import React from 'react';
 
-import { Container } from '@mui/material';
+import { Container, Grid } from '@mui/material';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { ErrorSnackbar, Header, Links } from 'components';
 import {
     ForgotPassword,
-    SignIn,
     NotFound,
     PasswordRecovery,
     Profile,
     Registration,
+    SignIn,
 } from 'pages';
 import { ReturnComponentType } from 'types';
 
@@ -19,15 +19,17 @@ const App = (): ReturnComponentType => {
         <BrowserRouter>
             <Header />
             <Container fixed>
-                <Routes>
-                    <Route path="/" element={<SignIn />} />
-                    <Route path="login" element={<SignIn />} />
-                    <Route path="registration" element={<Registration />} />
-                    <Route path="profile" element={<Profile />} />
-                    <Route path="password_recovery" element={<PasswordRecovery />} />
-                    <Route path="enter_new_password" element={<ForgotPassword />} />
-                    <Route path="*" element={<NotFound />} />
-                </Routes>
+                <Grid container justifyContent="center">
+                    <Routes>
+                        <Route path="/" element={<SignIn />} />
+                        <Route path="login" element={<SignIn />} />
+                        <Route path="registration" element={<Registration />} />
+                        <Route path="profile" element={<Profile />} />
+                        <Route path="password_recovery" element={<PasswordRecovery />} />
+                        <Route path="enter_new_password" element={<ForgotPassword />} />
+                        <Route path="*" element={<NotFound />} />
+                    </Routes>
+                </Grid>
             </Container>
             <Links />
             <ErrorSnackbar />

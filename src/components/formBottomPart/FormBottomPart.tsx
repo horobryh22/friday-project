@@ -13,6 +13,7 @@ export const FormBottomPart: React.FC<FormBottomPartType> = ({
     linkText,
     helperText,
     buttonName,
+    redirectTo,
 }): ReturnComponentType => {
     return (
         <div className={classes.wrapper}>
@@ -20,7 +21,9 @@ export const FormBottomPart: React.FC<FormBottomPartType> = ({
                 {buttonName}
             </StyledButton>
             <FormHelperText>{helperText}</FormHelperText>
-            <NavLink to="/registration">{linkText}</NavLink>
+            <NavLink className={classes.link} to={`${redirectTo}`}>
+                {linkText}
+            </NavLink>
         </div>
     );
 };

@@ -3,8 +3,4 @@ export type {
     RegisterUserErrorType,
     UserDataType,
 } from './registerUserTypes';
-export type {
-    InvalidValueErrorType,
-    LoginErrorType,
-    LoginResponseType,
-} from './LoginUserTypes';
+export type { LoginResponseType } from './LoginUserTypes';

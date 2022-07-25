@@ -1,12 +1,10 @@
 import axios from 'axios';
 
 import {
-    RegisterUserErrorType,
     AddedUserType,
-    UserDataType,
-    LoginErrorType,
     LoginResponseType,
-    InvalidValueErrorType,
+    RegisterUserErrorType,
+    UserDataType,
 } from 'api';
 import { SignInValuesType } from 'pages';
 
@@ -15,11 +13,8 @@ export const instance = axios.create({
     withCredentials: true,
 });
 export const authAPI = {
-    login: async (data: SignInValuesType) => {
-        return instance.post<LoginErrorType | LoginResponseType | InvalidValueErrorType>(
-            `auth/login`,
-            data,
-        );
+    login: (data: SignInValuesType) => {
+        return instance.post<LoginResponseType>(`auth/login`, data);
     },
     register: ({ email, password }: UserDataType) => {
         return instance.post<AddedUserType | RegisterUserErrorType>('auth/register', {
