@@ -77,7 +77,7 @@ export const SignIn = (): ReturnComponentType => {
                                     type={`${visibility ? 'text' : 'password'}`}
                                     label="Password"
                                     margin="normal"
-                                    color={`${errors.email ? 'error' : 'primary'}`}
+                                    color={`${errors.password ? 'error' : 'primary'}`}
                                     InputProps={{
                                         endAdornment: visible,
                                     }}

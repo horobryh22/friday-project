@@ -7,7 +7,7 @@ import { ErrorSnackbar, Header, Links } from 'components';
 import {
     ForgotPassword,
     NotFound,
-    PasswordRecovery,
+    CreateNewPassword,
     Profile,
     Registration,
     SignIn,
@@ -27,7 +27,7 @@ const App = (): ReturnComponentType => {
                         <Route path="registration" element={<Registration />} />
                         <Route path="profile" element={<Profile />} />
                         <Route path="check_email" element={<CheckEmail />} />
-                        <Route path="password_recovery" element={<PasswordRecovery />} />
+                        <Route path="password_recovery" element={<CreateNewPassword />} />
                         <Route path="enter_new_password" element={<ForgotPassword />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
