@@ -52,14 +52,14 @@ export const SignUp = (): ReturnComponentType => {
             navigate('/login');
         } else {
             console.log('pass not match!');
-            setPassError('passwords does not match');
+            setPassError('passwords do not match');
         }
     };
 
     return (
         <Paper elevation={3} className={s.wrapper}>
             <Container>
-                <h1>Sign Up</h1>
+                <h1 className={s.title}>Sign Up</h1>
                 <form
                     className={s.form}
                     onSubmit={handleSubmit(data => submitHandler(data))}
@@ -77,11 +77,13 @@ export const SignUp = (): ReturnComponentType => {
                         variant="standard"
                         label="Email"
                     />
-                    {errors?.email && (
-                        <span className={s.error}>
-                            {errors.email.message || 'Required'}
-                        </span>
-                    )}
+                    <p className={s.errorWrapper}>
+                        {errors?.email && (
+                            <span className={s.error}>
+                                {errors.email.message || 'Required'}
+                            </span>
+                        )}
+                    </p>
                     <div className={s.formGroup}>
                         <TextField
                             {...register('password', {
@@ -99,13 +101,13 @@ export const SignUp = (): ReturnComponentType => {
                         />
                         {visible}
                     </div>
-                    <span>
+                    <p className={s.errorWrapper}>
                         {errors?.password && (
                             <span className={s.error}>
                                 {errors.password.message || 'Required'}
                             </span>
                         )}
-                    </span>
+                    </p>
                     <div className={s.formGroup}>
                         <TextField
                             {...register('passwordConfirm')}
@@ -117,7 +119,9 @@ export const SignUp = (): ReturnComponentType => {
                         />
                         {visible}
                     </div>
-                    {passError && <span className={s.error}>{passError}</span>}
+                    <p className={s.errorWrapper}>
+                        <span className={s.error}>{passError}</span>
+                    </p>
                     <StyledButton className={s.button} variant="contained" type="submit">
                         Sign Up
                     </StyledButton>

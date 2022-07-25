@@ -35,7 +35,10 @@
     line-height: 17px;
 }
 
+.errorWrapper {
+    /*height: 20px;*/
+}
+
 .error {
-    height: 20px;
     color: red
 }
