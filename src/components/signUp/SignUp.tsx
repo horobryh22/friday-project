@@ -21,8 +21,11 @@ export const SignUp = (): ReturnComponentType => {
 
     const [visible, visibility] = useVisibility(false);
     const [passError, setPassError] = useState('');
+    const [success, setSuccess] = useState(false);
 
     const inputType = visibility ? 'text' : 'password';
+    const wrapperCLassName = success ? 'success' : '';
+    const intervalToRedirect = 700;
 
     const {
         register,
@@ -33,7 +36,10 @@ export const SignUp = (): ReturnComponentType => {
     const submitHandler = (data: SignUpFormType): void => {
         if (data.password === data.passwordConfirm) {
             dispatch(registerUser(data as UserDataType));
-            navigate('/login');
+            setSuccess(true);
+            setTimeout(() => {
+                navigate('/login');
+            }, intervalToRedirect);
         } else {
             console.log('pass not match!');
             setPassError('passwords do not match');
@@ -41,7 +47,7 @@ export const SignUp = (): ReturnComponentType => {
     };
 
     return (
-        <Paper elevation={3} className={s.wrapper}>
+        <Paper elevation={3} className={`${s.wrapper} ${s[wrapperCLassName]}`}>
             <Container>
                 <h1 className={s.title}>Sign Up</h1>
                 <form
@@ -106,9 +112,17 @@ export const SignUp = (): ReturnComponentType => {
                     <p className={s.errorWrapper}>
                         <span className={s.error}>{passError}</span>
                     </p>
-                    <StyledButton className={s.button} variant="contained" type="submit">
-                        Sign Up
-                    </StyledButton>
+                    {success ? (
+                        <p className={s.success}>Success</p>
+                    ) : (
+                        <StyledButton
+                            className={s.button}
+                            variant="contained"
+                            type="submit"
+                        >
+                            Sign Up
+                        </StyledButton>
+                    )}
                 </form>
                 <p className={s.tooltip}>Already have an account?</p>
                 <Button variant="text">

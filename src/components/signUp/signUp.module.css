@@ -6,6 +6,10 @@
     margin: 60px auto;
 }
 
+.wrapper.success {
+    box-shadow: 0 3px 3px -2px rgba(159,220,68,0.9),0 3px 4px 0 rgba(159,220,68,0.6),0 1px 8px 0 rgba(159,220,68,0.4);;
+}
+
 .title {
     font-style: normal;
     font-weight: 600;
@@ -46,6 +50,11 @@
 
 .error {
     color: red;
+}
+
+.success {
+    color: #96b902;
+    font-size: 22px;
 }
 
 @media screen and (max-width: 450px) {
