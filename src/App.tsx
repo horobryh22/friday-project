@@ -12,6 +12,7 @@ import {
     Registration,
     SignIn,
 } from 'pages';
+import { CheckEmail } from 'pages/checkEmail/CheckEmail';
 import { ReturnComponentType } from 'types';
 
 const App = (): ReturnComponentType => {
@@ -25,6 +26,7 @@ const App = (): ReturnComponentType => {
                         <Route path="login" element={<SignIn />} />
                         <Route path="registration" element={<Registration />} />
                         <Route path="profile" element={<Profile />} />
+                        <Route path="check_email" element={<CheckEmail />} />
                         <Route path="password_recovery" element={<PasswordRecovery />} />
                         <Route path="enter_new_password" element={<ForgotPassword />} />
                         <Route path="*" element={<NotFound />} />

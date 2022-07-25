@@ -4,4 +4,5 @@ export { Profile } from './profile/Profile';
 export { Registration } from './registration/Registration';
 export { ForgotPassword } from './forgotPassword/ForgotPassword';
 export { PasswordRecovery } from './passwordRecovery/PasswordRecovery';
+export { CheckEmail } from './checkEmail/CheckEmail';
 export type { SignInValuesType } from './signIn/types';
