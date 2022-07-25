@@ -1,97 +1,112 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import {
     Checkbox,
     FormControl,
     FormControlLabel,
     FormGroup,
-    FormHelperText,
-    Grid,
-    IconButton,
     TextField,
-    Typography,
 } from '@mui/material';
-import { NavLink } from 'react-router-dom';
+import { Controller, useForm } from 'react-hook-form';
+import { Navigate, NavLink } from 'react-router-dom';
 
 import classes from './SignIn.module.css';
+import { SignInValuesType } from './types';
 
-import { StyledButton } from 'components/header/styles';
+import { FormBottomPart } from 'components';
+import { EMAIL_RULES, PASSWORD_RULES } from 'constant';
+import { useAppDispatch, useTypedSelector, useVisibility } from 'hooks';
+import { login } from 'store';
 import { ReturnComponentType } from 'types';
 
 export const SignIn = (): ReturnComponentType => {
-    const [visibility, setVisibility] = useState(false);
+    const dispatch = useAppDispatch();
 
-    const toggleVisibility = (flag: boolean): void => {
-        setVisibility(flag);
+    const isUserAuth = useTypedSelector(state => state.auth.isUserAuth);
+
+    const {
+        control,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({
+        defaultValues: {
+            email: '',
+            password: '',
+            rememberMe: false,
+        },
+        mode: 'onChange',
+    });
+
+    const [visible, visibility] = useVisibility(false);
+
+    const onSubmit = (values: SignInValuesType): void => {
+        dispatch(login(values));
     };
 
-    const visible = visibility ? (
-        <IconButton aria-label="visibility" onClick={() => toggleVisibility(false)}>
-            <VisibilityIcon />
-        </IconButton>
-    ) : (
-        <IconButton aria-label="visibilityOff" onClick={() => toggleVisibility(true)}>
-            <VisibilityOffIcon />
-        </IconButton>
-    );
+    if (isUserAuth) return <Navigate to="/profile" />;
 
     return (
-        <Grid container justifyContent="center">
-            <Grid item justifyContent="center">
-                <div className={classes.formWrapper}>
-                    <Typography variant="h4" component="div">
-                        Sign in
-                    </Typography>
-                    <form className={classes.form}>
-                        <FormControl fullWidth>
-                            <FormGroup>
+        <div className={classes.formWrapper}>
+            <h1 className={classes.title}>Sign In</h1>
+            <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
+                <FormControl fullWidth>
+                    <FormGroup>
+                        <Controller
+                            name="email"
+                            control={control}
+                            rules={EMAIL_RULES}
+                            render={({ field }) => (
                                 <TextField
+                                    {...field}
                                     variant="standard"
                                     label="Email"
                                     margin="normal"
+                                    color={`${errors.email ? 'error' : 'primary'}`}
                                 />
+                            )}
+                        />
+                        <div className={classes.error}>{errors.email?.message}</div>
+                        <Controller
+                            name="password"
+                            control={control}
+                            rules={PASSWORD_RULES}
+                            render={({ field }) => (
                                 <TextField
+                                    {...field}
                                     variant="standard"
                                     type={`${visibility ? 'text' : 'password'}`}
                                     label="Password"
                                     margin="normal"
+                                    color={`${errors.password ? 'error' : 'primary'}`}
                                     InputProps={{
                                         endAdornment: visible,
                                     }}
                                 />
+                            )}
+                        />
+                        <div className={classes.error}>{errors.password?.message}</div>
+                        <Controller
+                            name="rememberMe"
+                            control={control}
+                            render={({ field }) => (
                                 <FormControlLabel
+                                    {...field}
                                     label="Remember me"
                                     checked
                                     control={<Checkbox />}
                                 />
-                                <NavLink
-                                    style={{
-                                        textDecoration: 'none',
-                                        color: 'inherit',
-                                        textAlign: 'right',
-                                        marginTop: '9px',
-                                    }}
-                                    to="/enter_new_password"
-                                >
-                                    Forgot password?
-                                </NavLink>
-                                <StyledButton
-                                    type="submit"
-                                    variant="contained"
-                                    color="primary"
-                                    style={{ marginTop: '60px' }}
-                                >
-                                    Sign In
-                                </StyledButton>
-                            </FormGroup>
-                        </FormControl>
-                    </form>
-                    <FormHelperText>{`Don't have an account?`}</FormHelperText>
-                    <NavLink to="/registration">Sign Up</NavLink>
-                </div>
-            </Grid>
-        </Grid>
+                            )}
+                        />
+                        <NavLink to="/enter_new_password">Forgot password?</NavLink>
+                        <FormBottomPart
+                            buttonName="Sign In"
+                            helperText="Don’t have an account?"
+                            linkText="Sign Up"
+                            redirectTo="/registration"
+                        />
+                    </FormGroup>
+                </FormControl>
+            </form>
+        </div>
     );
 };

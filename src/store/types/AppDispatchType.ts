@@ -1,5 +1,5 @@
 import { ThunkDispatch } from 'redux-thunk';
 
-import { AppActionsType, AppRootState } from 'store/types';
+import { AppRootActionsType, AppRootState } from 'store/types';
 
-export type AppDispatch = ThunkDispatch<AppRootState, unknown, AppActionsType>;
+export type AppDispatch = ThunkDispatch<AppRootState, unknown, AppRootActionsType>;

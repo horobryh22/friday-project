@@ -1,1 +1,1 @@
-export {};
+export { selectAuthError } from './selectAuthError';
