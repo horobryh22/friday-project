@@ -5,5 +5,5 @@ export type {
     AppRootState,
     AppDispatch,
 } from './types';
-export { login, registerUser } from './middlewares';
-export { selectAuthError } from './selectors';
+export { login, registerUser, forgot, setNewPassword } from './middlewares';
+export { selectAuthError, selectAuthInfo } from './selectors';

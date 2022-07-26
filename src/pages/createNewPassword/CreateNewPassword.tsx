@@ -2,15 +2,21 @@ import React from 'react';
 
 import { FormControl, FormGroup, FormLabel, TextField } from '@mui/material';
 import { Controller, useForm } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
 
 import classes from './CreateNewPassword.module.css';
 
 import { StyledButton } from 'components/header/styles';
 import { PASSWORD_RULES } from 'constant';
-import { useVisibility } from 'hooks';
+import { useAppDispatch, useVisibility } from 'hooks';
+import { setNewPassword } from 'store';
 import { ReturnComponentType } from 'types';
 
 export const CreateNewPassword = (): ReturnComponentType => {
+    const dispatch = useAppDispatch();
+
+    const { token } = useParams();
+
     const [visible, visibility] = useVisibility(false);
 
     const {
@@ -25,8 +31,12 @@ export const CreateNewPassword = (): ReturnComponentType => {
     });
 
     const onSubmit = ({ password }: { password: string }): void => {
-        console.log(password);
+        if (token) {
+            dispatch(setNewPassword(password, token));
+        }
     };
+
+    // if (toLogin) return <Navigate to="login" />;
 
     return (
         <div className={classes.formWrapper}>

@@ -2,18 +2,18 @@ import axios, { AxiosError } from 'axios';
 
 import { authAPI } from 'api';
 import { REQUEST_STATUS } from 'enums';
-import { setAuthErrorAC } from 'store/actions';
 import { setAppStatusAC } from 'store/actions/app';
+import { setAuthErrorAC, setAuthInfoAC } from 'store/actions/auth';
 import { AppThunkType } from 'store/types';
 
-export const forgot =
-    (email: string): AppThunkType =>
+export const setNewPassword =
+    (password: string, resetPasswordToken: string): AppThunkType =>
     async dispatch => {
         try {
             dispatch(setAppStatusAC(REQUEST_STATUS.LOADING));
-            const response = await authAPI.forgot(email);
+            const response = await authAPI.setNewPassword(password, resetPasswordToken);
 
-            return response;
+            dispatch(setAuthInfoAC(response.data.info));
         } catch (e) {
             const err = e as Error | AxiosError;
 

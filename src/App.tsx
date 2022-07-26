@@ -3,7 +3,7 @@ import React from 'react';
 import { Container, Grid, LinearProgress } from '@mui/material';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { ErrorSnackbar, Header, Links } from 'components';
+import { SnackBar, Header, Links } from 'components';
 import { PROGRESS_STYLE } from 'constant';
 import { REQUEST_STATUS } from 'enums';
 import { useTypedSelector } from 'hooks';
@@ -35,14 +35,17 @@ const App = (): ReturnComponentType => {
                         <Route path="registration" element={<Registration />} />
                         <Route path="profile" element={<Profile />} />
                         <Route path="check_email" element={<CheckEmail />} />
-                        <Route path="password_recovery" element={<CreateNewPassword />} />
+                        <Route
+                            path="password_recovery/:token"
+                            element={<CreateNewPassword />}
+                        />
                         <Route path="enter_new_password" element={<ForgotPassword />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
                 </Grid>
             </Container>
             <Links />
-            <ErrorSnackbar />
+            <SnackBar />
         </BrowserRouter>
     );
 };
