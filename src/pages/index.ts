@@ -3,6 +3,6 @@ export { NotFound } from './notFound/NotFound';
 export { Profile } from './profile/Profile';
 export { Registration } from './registration/Registration';
 export { ForgotPassword } from './forgotPassword/ForgotPassword';
-export { CreateNewPassword } from 'pages/createNewPassword/CreateNewPassword';
+export { SetNewPassword } from 'pages/setNewPassword/SetNewPassword';
 export { CheckEmail } from './checkEmail/CheckEmail';
 export type { SignInValuesType } from './signIn/types';

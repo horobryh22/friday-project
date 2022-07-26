@@ -8,7 +8,7 @@ import { PROGRESS_STYLE } from 'constant';
 import { REQUEST_STATUS } from 'enums';
 import { useTypedSelector } from 'hooks';
 import {
-    CreateNewPassword,
+    SetNewPassword,
     ForgotPassword,
     NotFound,
     Profile,
@@ -35,7 +35,7 @@ const App = (): ReturnComponentType => {
                         <Route path="profile" element={<Profile />} />
                         <Route
                             path="password_recovery/:token"
-                            element={<CreateNewPassword />}
+                            element={<SetNewPassword />}
                         />
                         <Route path="enter_new_password" element={<ForgotPassword />} />
                         <Route path="*" element={<NotFound />} />
