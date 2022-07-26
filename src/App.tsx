@@ -3,12 +3,11 @@ import React from 'react';
 import { Container, Grid, LinearProgress } from '@mui/material';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { SnackBar, Header, Links } from 'components';
+import { Header, Links, SnackBar } from 'components';
 import { PROGRESS_STYLE } from 'constant';
 import { REQUEST_STATUS } from 'enums';
 import { useTypedSelector } from 'hooks';
 import {
-    CheckEmail,
     CreateNewPassword,
     ForgotPassword,
     NotFound,
@@ -34,7 +33,6 @@ const App = (): ReturnComponentType => {
                         <Route path="login" element={<SignIn />} />
                         <Route path="registration" element={<Registration />} />
                         <Route path="profile" element={<Profile />} />
-                        <Route path="check_email" element={<CheckEmail />} />
                         <Route
                             path="password_recovery/:token"
                             element={<CreateNewPassword />}

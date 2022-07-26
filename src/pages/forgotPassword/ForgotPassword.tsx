@@ -2,18 +2,20 @@ import React from 'react';
 
 import { FormControl, FormGroup, FormLabel, TextField } from '@mui/material';
 import { Controller, useForm } from 'react-hook-form';
-import { Navigate } from 'react-router-dom';
 
 import classes from './ForgotPassword.module.css';
 
 import { FormBottomPart } from 'components';
 import { EMAIL_RULES } from 'constant';
-import { useAppDispatch } from 'hooks';
-import { forgot } from 'store';
+import { useAppDispatch, useTypedSelector } from 'hooks';
+import { CheckEmail } from 'pages/checkEmail/CheckEmail';
+import { forgot, selectIsEmailSent } from 'store';
 import { ReturnComponentType } from 'types';
 
 export const ForgotPassword = (): ReturnComponentType => {
     const dispatch = useAppDispatch();
+
+    const isEmailSent = useTypedSelector(selectIsEmailSent);
 
     const {
         control,
@@ -26,13 +28,11 @@ export const ForgotPassword = (): ReturnComponentType => {
         mode: 'onChange',
     });
 
-    const onSubmit = ({ email }: { email: string }): any => {
-        const result = dispatch(forgot(email));
-
-        if (result !== undefined) {
-            return <Navigate to="check_email" />;
-        }
+    const onSubmit = ({ email }: { email: string }): void => {
+        dispatch(forgot(email));
     };
+
+    if (isEmailSent) return <CheckEmail />;
 
     return (
         <div className={classes.formWrapper}>

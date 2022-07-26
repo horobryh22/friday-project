@@ -6,4 +6,9 @@ export type {
     AppDispatch,
 } from './types';
 export { login, registerUser, forgot, setNewPassword } from './middlewares';
-export { selectAuthError, selectAuthInfo } from './selectors';
+export {
+    selectAuthError,
+    selectAuthInfo,
+    selectIsEmailSent,
+    selectGoToLogin,
+} from './selectors';

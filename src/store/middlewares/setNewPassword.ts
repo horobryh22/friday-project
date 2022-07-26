@@ -3,7 +3,7 @@ import axios, { AxiosError } from 'axios';
 import { authAPI } from 'api';
 import { REQUEST_STATUS } from 'enums';
 import { setAppStatusAC } from 'store/actions/app';
-import { setAuthErrorAC, setAuthInfoAC } from 'store/actions/auth';
+import { setAuthErrorAC, setAuthInfoAC, setGoToLoginAC } from 'store/actions/auth';
 import { AppThunkType } from 'store/types';
 
 export const setNewPassword =
@@ -14,6 +14,7 @@ export const setNewPassword =
             const response = await authAPI.setNewPassword(password, resetPasswordToken);
 
             dispatch(setAuthInfoAC(response.data.info));
+            dispatch(setGoToLoginAC(true));
         } catch (e) {
             const err = e as Error | AxiosError;
 
