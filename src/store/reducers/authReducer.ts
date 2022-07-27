@@ -18,9 +18,9 @@ const initialState: AuthStateType = {
     isUserAuth: false,
     authUserData: {
         _id: '',
-        email: 'empty@mail.ru',
-        name: 'Vasya',
-        avatar: 'http',
+        email: '',
+        name: '',
+        avatar: '',
         publicCardPacksCount: 0,
         isAdmin: false,
         verified: false,

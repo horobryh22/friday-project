@@ -1,20 +1,19 @@
 import axios, { AxiosError } from 'axios';
 
 import { authAPI } from 'api';
+import { UpDateTypes } from 'api/types/upDateTypes';
 import { REQUEST_STATUS } from 'enums';
-import { SignInValuesType } from 'pages';
-import { setAuthErrorAC } from 'store/actions';
-import { setAppStatusAC } from 'store/actions/app';
-import { me } from 'store/middlewares/me';
+import { setAppStatusAC, setAuthErrorAC, setUsersAC } from 'store/actions';
 import { AppThunkType } from 'store/types';
 
-export const login =
-    (data: SignInValuesType): AppThunkType =>
+export const updateUserData =
+    ({ name, avatar }: UpDateTypes): AppThunkType =>
     async dispatch => {
         try {
             dispatch(setAppStatusAC(REQUEST_STATUS.LOADING));
-            await authAPI.login(data);
-            dispatch(me());
+            const data = await authAPI.put({ name, avatar });
+
+            dispatch(setUsersAC(data.data.updatedUser));
         } catch (e) {
             const err = e as Error | AxiosError;
 

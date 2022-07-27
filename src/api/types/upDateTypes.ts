@@ -1,4 +1,4 @@
 export type UpDateTypes = {
     name: string;
-    avatar: any;
+    avatar: string;
 };
