@@ -4,6 +4,8 @@ export {
     setIsEmailSentAC,
     setIsUserAuthAC,
     setGoToLoginAC,
+    // my type
+    setUsersAC,
 } from './auth';
 export { setAppStatusAC } from './app';
 export type {
@@ -15,4 +17,6 @@ export type {
     SetAuthErrorType,
     SetAppStatusType,
     SetGoToLogin,
+    // my type
+    setUsersACType,
 } from './types';

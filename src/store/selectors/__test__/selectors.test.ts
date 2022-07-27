@@ -1,4 +1,5 @@
 import { REQUEST_STATUS } from 'enums';
+import { MeDataType } from 'store/reducers/types/MeDataType';
 import { selectAuthError } from 'store/selectors/selectAuthError';
 import { selectAuthInfo } from 'store/selectors/selectAuthInfo';
 import { selectGoToLogin } from 'store/selectors/selectGoToLogin';
@@ -20,6 +21,7 @@ beforeEach(() => {
             isUserAuth: false,
             goToLogin: false,
             isEmailSent: false,
+            authUserData: {} as MeDataType,
         },
     };
 });

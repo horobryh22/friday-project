@@ -1,4 +1,5 @@
 import {
+    ME_AUTH,
     SET_AUTH_ERROR,
     SET_AUTH_INFO,
     SET_GO_TO_LOGIN,
@@ -11,8 +12,10 @@ import {
     SetGoToLogin,
     SetIsEmailSent,
     SetIsUserAuth,
+    setUsersACType, // my import
 } from './types';
 
+import { MeDataType } from 'store/reducers/types/MeDataType';
 import { Nullable } from 'types';
 
 export const setAuthErrorAC = (error: Nullable<string>): SetAuthErrorType => {
@@ -48,4 +51,14 @@ export const setGoToLoginAC = (goToLogin: boolean): SetGoToLogin => {
         type: SET_GO_TO_LOGIN,
         payload: { goToLogin },
     } as const;
+};
+// my action
+
+export const setUsersAC = (data: MeDataType): setUsersACType => {
+    return {
+        type: ME_AUTH,
+        payload: {
+            data,
+        },
+    };
 };
