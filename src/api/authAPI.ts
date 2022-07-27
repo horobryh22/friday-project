@@ -6,7 +6,9 @@ import {
     RegisterUserErrorType,
     UserDataType,
 } from 'api';
+import { UpDateTypes } from 'api/types/upDateTypes';
 import { SignInValuesType } from 'pages';
+import { MeDataType } from 'store/reducers/types/MeDataType';
 
 export const instance = axios.create({
     baseURL: process.env.REACT_APP_BACK_URL || 'http://localhost:7542/2.0/',
@@ -29,7 +31,7 @@ export const authAPI = {
             {
                 email,
                 from: 'test-front-admin <hvi17@yandex.ru>',
-                message: `<div style="background-color: lime; padding: 15px">
+                message: `<div style='background-color: lime; padding: 15px'>
                           password recovery link: <a href='http://localhost:3000/password_recovery/$token$'>link</a>
                       </div>`,
             },
@@ -41,5 +43,14 @@ export const authAPI = {
             email,
             password,
         });
+    },
+    me: () => {
+        return instance.post<MeDataType>('auth/me');
+    },
+    delete: () => {
+        return instance.delete('auth/me');
+    },
+    put: ({ name, avatar }: UpDateTypes) => {
+        return instance.put('auth/me', { name, avatar });
     },
 };
