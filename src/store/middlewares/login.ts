@@ -5,7 +5,7 @@ import { REQUEST_STATUS } from 'enums';
 import { SignInValuesType } from 'pages';
 import { setAuthErrorAC } from 'store/actions';
 import { setAppStatusAC } from 'store/actions/app';
-import { setIsUserAuthAC } from 'store/actions/auth';
+import { me } from 'store/middlewares/me';
 import { AppThunkType } from 'store/types';
 
 export const login =
@@ -14,7 +14,7 @@ export const login =
         try {
             dispatch(setAppStatusAC(REQUEST_STATUS.LOADING));
             await authAPI.login(data);
-            dispatch(setIsUserAuthAC(true));
+            dispatch(me());
         } catch (e) {
             const err = e as Error | AxiosError;
 

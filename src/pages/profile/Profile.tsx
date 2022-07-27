@@ -3,15 +3,18 @@ import React from 'react';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import LogoutIcon from '@mui/icons-material/Logout';
 import PhotoCameraRoundedIcon from '@mui/icons-material/PhotoCameraRounded';
+import { Navigate } from 'react-router-dom';
 
 import classes from './Profile.module.css';
 
 import { EditableSpan } from 'components/profile/EditableSpan';
 import { useAppDispatch, useTypedSelector } from 'hooks';
+import { logOut } from 'store/middlewares/logOut';
 import { updateUserData } from 'store/middlewares/updateUserData';
 import { ReturnComponentType } from 'types';
 
 export const Profile = (): ReturnComponentType => {
+    const isUserAuth = useTypedSelector(state => state.auth.isUserAuth);
     const dispatch = useAppDispatch();
 
     const { authUserData } = useTypedSelector(state => state.auth);
@@ -19,6 +22,14 @@ export const Profile = (): ReturnComponentType => {
     const editTitle = (name: string): void => {
         dispatch(updateUserData({ name, avatar: '' }));
     };
+
+    const logOutHandle = (): void => {
+        dispatch(logOut());
+    };
+
+    if (!isUserAuth) {
+        return <Navigate to="/login" />;
+    }
 
     return (
         <div className={classes.container}>
@@ -48,7 +59,7 @@ export const Profile = (): ReturnComponentType => {
                 <div className={classes.logOutBtn}>
                     <button
                         type="button"
-                        onClick={() => {}}
+                        onClick={logOutHandle}
                         style={{
                             border: 'none',
                             background: 'transparent',

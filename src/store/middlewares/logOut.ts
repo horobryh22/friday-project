@@ -10,13 +10,24 @@ import {
 } from 'store/actions';
 import { AppThunkType } from 'store/types';
 
-export const me = (): AppThunkType => async dispatch => {
+export const logOut = (): AppThunkType => async dispatch => {
     try {
         dispatch(setAppStatusAC(REQUEST_STATUS.LOADING));
-        const data = await authAPI.me();
-
-        dispatch(setUsersAC(data.data));
-        dispatch(setIsUserAuthAC(true));
+        await authAPI.delete();
+        dispatch(setIsUserAuthAC(false));
+        dispatch(
+            setUsersAC({
+                email: '',
+                error: '',
+                avatar: '',
+                _id: '',
+                name: '',
+                isAdmin: false,
+                rememberMe: false,
+                verified: false,
+                publicCardPacksCount: 0,
+            }),
+        );
     } catch (e) {
         const err = e as Error | AxiosError;
 
