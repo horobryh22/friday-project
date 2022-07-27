@@ -51,6 +51,6 @@ export const authAPI = {
         return instance.delete('auth/me');
     },
     put: ({ name, avatar }: UpDateTypes) => {
-        return instance.put('auth/me', { name, avatar });
+        return instance.put<{ updatedUser: MeDataType }>('auth/me', { name, avatar });
     },
 };

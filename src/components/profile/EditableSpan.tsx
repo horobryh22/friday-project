@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import EditIcon from '@mui/icons-material/Edit';
 import { Button } from '@mui/material';
@@ -35,13 +35,13 @@ export const EditableSpan = (props: EditableSpanProps): ReturnComponentType => {
         } */
 
     const saveBtnHandler = (): void => {
-        const data = {
-            name,
-            // avatar,
-        };
-
-        editTitle(data);
+        editTitle(name);
+        onPencilClickHandler();
     };
+
+    useEffect(() => {
+        setName(title);
+    }, [title]);
 
     return edit ? (
         <div>

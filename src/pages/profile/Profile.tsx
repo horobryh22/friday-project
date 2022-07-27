@@ -7,13 +7,18 @@ import PhotoCameraRoundedIcon from '@mui/icons-material/PhotoCameraRounded';
 import classes from './Profile.module.css';
 
 import { EditableSpan } from 'components/profile/EditableSpan';
-import { useTypedSelector } from 'hooks';
+import { useAppDispatch, useTypedSelector } from 'hooks';
+import { updateUserData } from 'store/middlewares/updateUserData';
 import { ReturnComponentType } from 'types';
 
 export const Profile = (): ReturnComponentType => {
+    const dispatch = useAppDispatch();
+
     const { authUserData } = useTypedSelector(state => state.auth);
 
-    const editTitle = (): void => {};
+    const editTitle = (name: string): void => {
+        dispatch(updateUserData({ name, avatar: '' }));
+    };
 
     return (
         <div className={classes.container}>
