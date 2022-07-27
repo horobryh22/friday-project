@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-import { Button, Container, Paper, TextField } from '@mui/material';
+import { Container, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { UserDataType } from 'api/types';
-import { StyledButton } from 'components/header/styles';
+import { FormBottomPart } from 'components/formBottomPart/FormBottomPart';
 import s from 'components/signUp/signUp.module.css';
 import { SignUpFormType } from 'components/signUp/types';
 import { useAppDispatch, useVisibility } from 'hooks';
@@ -33,7 +33,7 @@ export const SignUp = (): ReturnComponentType => {
         formState: { errors },
     } = useForm<SignUpFormType>({ mode: 'onBlur' });
 
-    const submitHandler = (data: SignUpFormType): void => {
+    const onSubmit = (data: SignUpFormType): void => {
         if (data.password === data.passwordConfirm) {
             dispatch(registerUser(data as UserDataType));
             setSuccess(true);
@@ -47,13 +47,10 @@ export const SignUp = (): ReturnComponentType => {
     };
 
     return (
-        <Paper elevation={3} className={`${s.wrapper} ${s[wrapperCLassName]}`}>
+        <div className={`${s.wrapper} ${s[wrapperCLassName]}`}>
             <Container>
                 <h1 className={s.title}>Sign Up</h1>
-                <form
-                    className={s.form}
-                    onSubmit={handleSubmit(data => submitHandler(data))}
-                >
+                <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
                     <TextField
                         {...register('email', {
                             required: true,
@@ -112,25 +109,14 @@ export const SignUp = (): ReturnComponentType => {
                     <p className={s.errorWrapper}>
                         <span className={s.error}>{passError}</span>
                     </p>
-                    {success ? (
-                        <p className={s.success}>Success</p>
-                    ) : (
-                        <StyledButton
-                            className={s.button}
-                            variant="contained"
-                            type="submit"
-                        >
-                            Sign Up
-                        </StyledButton>
-                    )}
+                    <FormBottomPart
+                        buttonName="Sign Up"
+                        helperText="Already have an account?"
+                        linkText="Sign In"
+                        redirectTo="/login"
+                    />
                 </form>
-                <p className={s.tooltip}>Already have an account?</p>
-                <Button variant="text">
-                    <NavLink to="/login" className={s.redirect}>
-                        Sign in
-                    </NavLink>
-                </Button>
             </Container>
-        </Paper>
+        </div>
     );
 };
