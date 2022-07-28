@@ -8,6 +8,7 @@ import { Navigate } from 'react-router-dom';
 import classes from './Profile.module.css';
 
 import { EditableSpan } from 'components/profile/EditableSpan';
+import { UserPhoto } from 'components/userPhoto/UserPhoto';
 import { useAppDispatch, useTypedSelector } from 'hooks';
 import { logOut } from 'store/middlewares/logOut';
 import { updateUserData } from 'store/middlewares/updateUserData';
@@ -46,7 +47,7 @@ export const Profile = (): ReturnComponentType => {
             <div className={classes.rectangle}>
                 <div className={classes.personalInfo}>Personal Information</div>
                 <div className={classes.avatarBox}>
-                    <img alt="avatar" />
+                    <UserPhoto variant="standard" />
                     <PhotoCameraRoundedIcon
                         onClick={() => {}}
                         className={classes.avatarCamera}
