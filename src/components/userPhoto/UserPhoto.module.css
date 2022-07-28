@@ -1,0 +1,15 @@
+.standard {
+    width: 76px;
+    height: 76px;
+}
+
+.small{
+    width: 40px;
+    height: 40px;
+}
+
+.photoBox{
+    background: url("/src/assets/images/profilePhoto.jpg") center no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+}
