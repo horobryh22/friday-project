@@ -1,11 +1,6 @@
 import axios from 'axios';
 
-import {
-    AddedUserType,
-    LoginResponseType,
-    RegisterUserErrorType,
-    UserDataType,
-} from 'api';
+import { AddedUserType, RegisterUserErrorType, UserDataType } from 'api';
 import { UpDateTypes } from 'api/types/upDateTypes';
 import { SignInValuesType } from 'pages';
 import { MeDataType } from 'store/reducers/types/MeDataType';
@@ -17,7 +12,7 @@ export const instance = axios.create({
 
 export const authAPI = {
     login: (data: SignInValuesType) => {
-        return instance.post<LoginResponseType>(`auth/login`, data);
+        return instance.post<MeDataType>(`auth/login`, data);
     },
     setNewPassword: (password: string, resetPasswordToken: string) => {
         return instance.post<{ info: string }>(`auth/set-new-password`, {

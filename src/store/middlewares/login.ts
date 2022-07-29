@@ -3,9 +3,8 @@ import axios, { AxiosError } from 'axios';
 import { authAPI } from 'api';
 import { REQUEST_STATUS } from 'enums';
 import { SignInValuesType } from 'pages';
-import { setAuthErrorAC } from 'store/actions';
+import { setAuthErrorAC, setIsUserAuthAC, setUsersAC } from 'store/actions';
 import { setAppStatusAC } from 'store/actions/app';
-import { me } from 'store/middlewares/me';
 import { AppThunkType } from 'store/types';
 
 export const login =
@@ -13,8 +12,10 @@ export const login =
     async dispatch => {
         try {
             dispatch(setAppStatusAC(REQUEST_STATUS.LOADING));
-            await authAPI.login(data);
-            dispatch(me());
+            const response = await authAPI.login(data);
+
+            dispatch(setUsersAC(response.data));
+            dispatch(setIsUserAuthAC(true));
         } catch (e) {
             const err = e as Error | AxiosError;
 
