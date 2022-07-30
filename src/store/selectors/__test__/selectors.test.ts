@@ -1,9 +1,12 @@
+import { AuthUserDataType } from 'api/types/AuthUserDataType/AuthUserDataType';
 import { REQUEST_STATUS } from 'enums';
-import { MeDataType } from 'store/reducers/types/MeDataType';
-import { selectAuthError } from 'store/selectors/selectAuthError/selectAuthError';
-import { selectAuthInfo } from 'store/selectors/selectAuthInfo/selectAuthInfo';
-import { selectGoToLogin } from 'store/selectors/selectGoToLogin/selectGoToLogin';
-import { selectIsEmailSent } from 'store/selectors/selectISEmailSent/selectIsEmailSent';
+import {
+    selectAppStatus,
+    selectAuthError,
+    selectAuthInfo,
+    selectGoToLogin,
+    selectIsEmailSent,
+} from 'store/selectors';
 import { AppRootState } from 'store/types';
 
 let state: AppRootState;
@@ -21,7 +24,7 @@ beforeEach(() => {
             isUserAuth: false,
             goToLogin: false,
             isEmailSent: false,
-            authUserData: {} as MeDataType,
+            authUserData: {} as AuthUserDataType,
         },
     };
 });
@@ -49,6 +52,12 @@ describe('select', () => {
         const isEmailSent = selectIsEmailSent(state);
 
         expect(isEmailSent).toBeFalsy();
+    });
+
+    test('AppStatus', () => {
+        const status = selectAppStatus(state);
+
+        expect(status).toBe(REQUEST_STATUS.IDLE);
     });
 });
 

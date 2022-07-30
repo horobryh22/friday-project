@@ -1,9 +1,12 @@
 import axios from 'axios';
 
-import { AddedUserType, RegisterUserErrorType, UserDataType } from 'api';
-import { UpDateTypes } from 'api/types/upDateTypes';
+import {
+    AuthUserDataType,
+    RegisterUserErrorType,
+    UpdateUserDataType,
+    RegisterUserDataType,
+} from 'api/types';
 import { SignInValuesType } from 'pages';
-import { MeDataType } from 'store/reducers/types/MeDataType';
 
 export const instance = axios.create({
     baseURL: process.env.REACT_APP_BACK_URL || 'http://localhost:7542/2.0/',
@@ -12,16 +15,16 @@ export const instance = axios.create({
 
 export const authAPI = {
     login: (data: SignInValuesType) => {
-        return instance.post<MeDataType>(`auth/login`, data);
+        return instance.post<AuthUserDataType>(`auth/login`, data);
     },
     setNewPassword: (password: string, resetPasswordToken: string) => {
-        return instance.post<{ info: string }>(`auth/set-new-password`, {
+        return instance.post<{ info: string; error: string }>(`auth/set-new-password`, {
             password,
             resetPasswordToken,
         });
     },
     forgot: (email: string) => {
-        return axios.post(
+        return axios.post<{ info: string; error: string }>(
             'https://neko-back.herokuapp.com/2.0/auth/forgot',
             {
                 email,
@@ -33,19 +36,22 @@ export const authAPI = {
             { withCredentials: true },
         );
     },
-    register: ({ email, password }: UserDataType) => {
-        return instance.post<AddedUserType | RegisterUserErrorType>('auth/register', {
-            email,
-            password,
-        });
+    register: (data: RegisterUserDataType) => {
+        return instance.post<{ addedUser: AuthUserDataType } | RegisterUserErrorType>(
+            'auth/register',
+            data,
+        );
     },
     me: () => {
-        return instance.post<MeDataType>('auth/me');
+        return instance.post<AuthUserDataType>('auth/me');
     },
-    delete: () => {
-        return instance.delete('auth/me');
+    logout: () => {
+        return instance.delete<{ info: string; error: string }>('auth/me');
     },
-    put: ({ name, avatar }: UpDateTypes) => {
-        return instance.put<{ updatedUser: MeDataType }>('auth/me', { name, avatar });
+    updateUserData: (userData: UpdateUserDataType) => {
+        return instance.put<{ updatedUser: AuthUserDataType; error: string }>(
+            'auth/me',
+            userData,
+        );
     },
 };
