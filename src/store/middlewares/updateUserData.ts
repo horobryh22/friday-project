@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 
-import { authAPI } from 'api';
+import { userAPI } from 'api';
 import { UpdateUserDataType } from 'api/types';
 import { REQUEST_STATUS } from 'enums';
 import { setAppStatusAC, setUsersAC } from 'store/actions';
@@ -12,7 +12,7 @@ export const updateUserData =
     async dispatch => {
         try {
             dispatch(setAppStatusAC(REQUEST_STATUS.LOADING));
-            const data = await authAPI.updateUserData({ name, avatar });
+            const data = await userAPI.updateUserData({ name, avatar });
 
             dispatch(setUsersAC(data.data.updatedUser));
         } catch (e) {
