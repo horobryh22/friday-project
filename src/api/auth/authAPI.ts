@@ -27,7 +27,7 @@ export const authAPI = {
                 email,
                 from: 'test-front-admin <hvi17@yandex.ru>',
                 message: `<div style='background-color: lime; padding: 15px'>
-                          password recovery link: <a href='http://localhost:3000/password_recovery/$token$'>link</a>
+                          password recovery link: <a href='http://localhost:3000/#/password_recovery/$token$'>link</a>
                       </div>`,
             },
             { withCredentials: true },

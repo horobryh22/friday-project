@@ -1,4 +1,4 @@
-import { AuthUserDataType } from 'api/types/AuthUserDataType/AuthUserDataType';
+import { AuthUserDataType } from 'api/types';
 import { REQUEST_STATUS } from 'enums';
 import {
     selectAppStatus,
@@ -6,6 +6,8 @@ import {
     selectAuthInfo,
     selectGoToLogin,
     selectIsEmailSent,
+    selectIsInitialized,
+    selectIsUserAuth,
 } from 'store/selectors';
 import { AppRootState } from 'store/types';
 
@@ -58,6 +60,18 @@ describe('select', () => {
         const status = selectAppStatus(state);
 
         expect(status).toBe(REQUEST_STATUS.IDLE);
+    });
+
+    test('isUserAuth', () => {
+        const isUserAuth = selectIsUserAuth(state);
+
+        expect(isUserAuth).toBeFalsy();
+    });
+
+    test('isInitialized', () => {
+        const isInitialized = selectIsInitialized(state);
+
+        expect(isInitialized).toBeFalsy();
     });
 });
 
