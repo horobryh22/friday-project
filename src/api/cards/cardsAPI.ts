@@ -8,6 +8,7 @@ import {
     GetCurrentCardRequestType,
     GetCurrentCardResponseType,
 } from 'api/types';
+import { GetCardType } from 'api/types/cards/GetCardType/GetCardType';
 
 export const cardsAPI = {
     getCards: ({
@@ -64,5 +65,8 @@ export const cardsAPI = {
                 pageCount,
             },
         });
+    },
+    createCard: (card: GetCardType) => {
+        return instance.post('cards/card', card);
     },
 };
