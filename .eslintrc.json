@@ -116,6 +116,7 @@
                 ]
             }
         ],
+        "camelcase": "off",
         "react/function-component-definition": [
             2,
             {
