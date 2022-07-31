@@ -5,3 +5,5 @@ export { FormBottomPart } from './formBottomPart/FormBottomPart';
 export { SnackBar } from 'components/snackbar/SnackBar';
 export { RoutesApp } from './routesApp/RoutesApp';
 export { UserPhoto } from './userPhoto/UserPhoto';
+export { CardsTopContent } from './cardsTopContent/CardsTopContent';
+export { TableComponent } from './table/Table';

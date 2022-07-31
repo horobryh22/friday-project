@@ -15,7 +15,7 @@ import {
     setUsersACType, // my import
 } from './types';
 
-import { AuthUserDataType } from 'api/types/AuthUserDataType/AuthUserDataType';
+import { AuthUserDataType } from 'api/types/auth/AuthUserDataType/AuthUserDataType';
 import { Nullable } from 'types';
 
 export const setAuthErrorAC = (error: Nullable<string>): SetAuthErrorType => {

@@ -1,4 +1,4 @@
-import { CardType } from 'api/types';
+import { CardType } from 'api/types/index';
 
 export type GetCardsResponseType = {
     cardPacks: CardType[];

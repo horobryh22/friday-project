@@ -1,4 +1,4 @@
-import { SortTypes } from 'api/types';
+import { SortTypes } from 'api/types/index';
 
 export type GetCardsRequestType = {
     packName?: string;
