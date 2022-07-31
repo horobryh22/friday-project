@@ -10,3 +10,5 @@ export type {
     RegisterUserDataType,
     RegisterUserErrorType,
 } from './auth/RegisterUserTypes/RegisterUserTypes';
+export type { GetCurrentCardRequestType } from './cards/GetCurrentCardRequestType/GetCurrentCardRequestType';
+export type { GetCurrentCardResponseType } from './cards/GetCurrentCardResponseType/GetCurrentCardResponseType';

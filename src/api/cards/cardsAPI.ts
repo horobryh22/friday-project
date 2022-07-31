@@ -5,6 +5,8 @@ import {
     AddCardsPackType,
     CardType,
     UpdateCardsPackType,
+    GetCurrentCardRequestType,
+    GetCurrentCardResponseType,
 } from 'api/types';
 
 export const cardsAPI = {
@@ -41,5 +43,26 @@ export const cardsAPI = {
     },
     updateCardsPack: (pack: UpdateCardsPackType) => {
         return instance.put<{ updatedCardsPack: CardType }>('cards/pack', pack);
+    },
+    getCard: ({
+        cardsPack_id,
+        cardAnswer = 'english',
+        min,
+        max,
+        sortCards = '0grade',
+        page = 1,
+        pageCount,
+    }: GetCurrentCardRequestType) => {
+        return instance.get<GetCurrentCardResponseType>('cards/card', {
+            params: {
+                cardsPack_id,
+                cardAnswer,
+                min,
+                max,
+                sortCards,
+                page,
+                pageCount,
+            },
+        });
     },
 };
