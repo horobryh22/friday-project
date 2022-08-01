@@ -1,22 +1,22 @@
 import { instance } from 'api/config';
 import {
     GetCardsResponseType,
-    GetCardsRequestType,
+    SearchParamsType,
     AddCardsPackType,
     CardType,
     UpdateCardsPackType,
 } from 'api/types';
 
-export const cardsAPI = {
-    getCards: ({
-        packName = '',
+export const packsAPI = {
+    fetchPacks: ({
+        packName,
         min,
         max,
-        sortPacks = '',
-        page = 1,
+        sortPacks,
+        page,
         pageCount,
-        user_id = '',
-    }: GetCardsRequestType) => {
+        user_id,
+    }: SearchParamsType) => {
         return instance.get<GetCardsResponseType>('cards/pack', {
             params: {
                 packName,

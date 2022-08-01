@@ -5,3 +5,4 @@ export { registerUser } from './registerUser';
 export { setNewPassword } from './setNewPassword';
 export { initializedApp } from './initializedApp';
 export { updateUserData } from './updateUserData';
+export { fetchPacks } from './fetchPacks';

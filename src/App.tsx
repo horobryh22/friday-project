@@ -6,19 +6,26 @@ import { Header, Links, RoutesApp, SnackBar } from 'components';
 import { PROGRESS_STYLE } from 'constant';
 import { REQUEST_STATUS } from 'enums';
 import { useAppDispatch, useTypedSelector } from 'hooks';
-import { initializedApp } from 'store/middlewares';
-import { selectAppStatus, selectIsInitialized } from 'store/selectors';
+import { initializedApp, fetchPacks } from 'store/middlewares';
+import { selectAppStatus, selectIsInitialized, selectIsUserAuth } from 'store/selectors';
 import { ReturnComponentType } from 'types';
 
 const App = (): ReturnComponentType => {
     const dispatch = useAppDispatch();
 
     const status = useTypedSelector(selectAppStatus);
+    const isUserAuth = useTypedSelector(selectIsUserAuth);
     const isInitialized = useTypedSelector(selectIsInitialized);
 
     useEffect(() => {
         dispatch(initializedApp());
     }, []);
+
+    useEffect(() => {
+        if (isUserAuth) {
+            dispatch(fetchPacks());
+        }
+    }, [isUserAuth]);
 
     if (!isInitialized) {
         return (
