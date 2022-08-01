@@ -8,4 +8,9 @@ export type GetCardType = {
     created: string;
     updated: string;
     _id: string;
+    comments: string;
+    type: string;
+    rating: number;
+    more_id: string;
+    __v: number;
 };

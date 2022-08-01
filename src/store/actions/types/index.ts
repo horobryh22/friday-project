@@ -11,3 +11,5 @@ export type { SetIsInitializedType } from './SetIsInitializedType';
 export type { setUsersACType } from './SetUsersType';
 export type { SetCardPacksType } from './SetCardPacksType';
 export type { SetSortPacksType } from './SetSortPacksType';
+export type { SetCardsType } from './SetCardsType';
+export type { CardsActionType } from './CardsActionType';
