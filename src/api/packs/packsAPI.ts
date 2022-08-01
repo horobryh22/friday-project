@@ -1,7 +1,7 @@
 import { instance } from 'api/config';
 import {
     GetCardsResponseType,
-    GetCardsRequestType,
+    SearchParamsType,
     AddCardsPackType,
     CardType,
     UpdateCardsPackType,
@@ -10,16 +10,16 @@ import {
 } from 'api/types';
 import { GetCardType } from 'api/types/cards/GetCardType/GetCardType';
 
-export const cardsAPI = {
-    getCards: ({
-        packName = '',
+export const packsAPI = {
+    fetchPacks: ({
+        packName,
         min,
         max,
-        sortPacks = '',
-        page = 1,
+        sortPacks,
+        page,
         pageCount,
-        user_id = '',
-    }: GetCardsRequestType) => {
+        user_id,
+    }: SearchParamsType) => {
         return instance.get<GetCardsResponseType>('cards/pack', {
             params: {
                 packName,
@@ -35,7 +35,7 @@ export const cardsAPI = {
     addCardsPack: (pack: AddCardsPackType) => {
         return instance.post<{ newCardsPack: CardType }>('cards/pack', pack);
     },
-    deleteCardsPack: (packId: string) => {
+    removeCardsPack: (packId: string) => {
         return instance.delete<{ deletedCardsPack: CardType }>('cards/pack', {
             params: {
                 id: packId,
