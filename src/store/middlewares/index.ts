@@ -8,3 +8,4 @@ export { updateUserData } from 'store/middlewares/auth/updateUserData';
 export { fetchPacks } from 'store/middlewares/packs/fetchPacks';
 export { addCardsPack } from 'store/middlewares/packs/addCardsPack';
 export { removeCardsPack } from 'store/middlewares/packs/removeCardsPack';
+export { fetchCards } from 'store/middlewares/cards/fetchCards';

@@ -16,7 +16,8 @@ export type ActionImagesType = {
 export const ActionImages = ({ id }: ActionImagesType): ReturnComponentType => {
     const dispatch = useAppDispatch();
 
-    const handleClick = (): void => {
+    const handleClick = (e: React.MouseEvent<HTMLElement>): void => {
+        e.stopPropagation();
         dispatch(removeCardsPack(id));
     };
 
