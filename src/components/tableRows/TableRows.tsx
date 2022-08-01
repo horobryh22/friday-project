@@ -27,7 +27,11 @@ export const TableRows = ({ rows }: TableRowsType): ReturnComponentType => {
 
                     return (
                         <TableCell key={column.id} align={column.align}>
-                            {column.id !== 'actions' ? value : <ActionImages />}
+                            {column.id !== 'actions' ? (
+                                value
+                            ) : (
+                                <ActionImages id={row._id} />
+                            )}
                         </TableCell>
                     );
                 })}

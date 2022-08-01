@@ -7,9 +7,9 @@ const initialState: PacksStateType = {
     cardPacks: [],
     searchParams: {
         packName: '',
-        min: 1,
+        min: 0,
         max: 4,
-        sortPacks: '',
+        sortPacks: '0updated',
         page: 1,
         pageCount: 8,
         user_id: '',

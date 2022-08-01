@@ -32,7 +32,7 @@ export const packsAPI = {
     addCardsPack: (pack: AddCardsPackType) => {
         return instance.post<{ newCardsPack: CardType }>('cards/pack', pack);
     },
-    deleteCardsPack: (packId: string) => {
+    removeCardsPack: (packId: string) => {
         return instance.delete<{ deletedCardsPack: CardType }>('cards/pack', {
             params: {
                 id: packId,
