@@ -10,3 +10,4 @@ export type { SetGoToLogin } from './SetGoToLogin';
 export type { SetIsInitializedType } from './SetIsInitializedType';
 export type { setUsersACType } from './SetUsersType';
 export type { SetCardPacksType } from './SetCardPacksType';
+export type { SetSortPacksType } from './SetSortPacksType';

@@ -17,6 +17,8 @@ const App = (): ReturnComponentType => {
     const isUserAuth = useTypedSelector(selectIsUserAuth);
     const isInitialized = useTypedSelector(selectIsInitialized);
 
+    const sortPacks = useTypedSelector(state => state.packs.searchParams.sortPacks);
+
     useEffect(() => {
         dispatch(initializedApp());
     }, []);
@@ -25,7 +27,7 @@ const App = (): ReturnComponentType => {
         if (isUserAuth) {
             dispatch(fetchPacks());
         }
-    }, [isUserAuth]);
+    }, [isUserAuth, sortPacks]);
 
     if (!isInitialized) {
         return (
