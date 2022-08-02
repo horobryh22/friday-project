@@ -13,3 +13,4 @@ export type { SetCardPacksType } from './SetCardPacksType';
 export type { SetSortPacksType } from './SetSortPacksType';
 export type { SetCardsType } from './SetCardsType';
 export type { CardsActionType } from './CardsActionType';
+export type { SetSortCardsType } from './SetSortCardsType';

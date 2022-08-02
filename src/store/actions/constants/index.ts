@@ -9,3 +9,4 @@ export const ME_AUTH = 'auth/ME-AUTH';
 export const SET_CARD_PACKS = 'packs/SET-CARD-PACKS';
 export const SET_SORT_PACKS = 'packs/SET-SORT-PACKS';
 export const SET_CARDS = 'cards/SET_CARDS';
+export const SET_SORT_CARDS = 'cards/SET_SORT_CARDS';

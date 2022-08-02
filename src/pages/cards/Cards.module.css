@@ -4,3 +4,7 @@ thead tr th.tableHead {
     font-size: 14px;
     line-height: 17px;
 }
+
+.pointer {
+    cursor: pointer;
+}
