@@ -20,20 +20,39 @@ import { setCardsSearchParamsAC } from 'store/actions/cards';
 import { fetchCards } from 'store/middlewares';
 import { ReturnComponentType } from 'types';
 
+const UPDATE_SORT_BTN_ID = 'updateSortBtn';
+const UPDATE_FIELD_NAME = 'updated';
+const GRADE_SORT_BTN_ID = 'gradeSortBtn';
+const GRADE_FIELD_NAME = 'grade';
+
 export const CardsList = ({
     cards,
     cardsPack_id,
 }: CardsListPropsType): ReturnComponentType => {
     const dispatch = useAppDispatch();
 
-    const [direction, setDirection] = useState<OrderDirectionType>('asc');
-    const updateFieldName = 'updated';
+    const [updateDirection, setUpdateDirection] = useState<OrderDirectionType>('asc');
+    const [gradeDirection, setGradeDirection] = useState<OrderDirectionType>('asc');
 
-    const handleSort = (): void => {
-        const sortCards =
-            direction === 'asc' ? `1${updateFieldName}` : `0${updateFieldName}`;
+    const handleSort = (e: React.MouseEvent<HTMLElement>): void => {
+        console.log(e.currentTarget);
+        let sortCards;
 
-        setDirection(direction === 'asc' ? 'desc' : 'asc');
+        if (e.currentTarget.id === UPDATE_SORT_BTN_ID) {
+            sortCards =
+                updateDirection === 'asc'
+                    ? `1${UPDATE_FIELD_NAME}`
+                    : `0${UPDATE_FIELD_NAME}`;
+            setUpdateDirection(updateDirection === 'asc' ? 'desc' : 'asc');
+        }
+        if (e.currentTarget.id === GRADE_SORT_BTN_ID) {
+            sortCards =
+                gradeDirection === 'asc'
+                    ? `1${GRADE_FIELD_NAME}`
+                    : `0${GRADE_FIELD_NAME}`;
+            setGradeDirection(gradeDirection === 'asc' ? 'desc' : 'asc');
+        }
+
         dispatch(setCardsSearchParamsAC({ cardsPack_id, sortCards }));
         dispatch(fetchCards({ cardsPack_id, sortCards }));
     };
@@ -53,15 +72,27 @@ export const CardsList = ({
                             <TableCell
                                 className={`${s.tableHead} ${s.pointer}`}
                                 onClick={handleSort}
+                                id={UPDATE_SORT_BTN_ID}
                             >
+                                Last Updated(g)
                                 <TableSortLabel
                                     active
                                     IconComponent={ArrowDropDown}
-                                    direction={direction}
+                                    direction={updateDirection}
                                 />
-                                Last Updated(g)
                             </TableCell>
-                            <TableCell className={s.tableHead}>Grade(g)</TableCell>
+                            <TableCell
+                                className={`${s.tableHead} ${s.pointer}`}
+                                onClick={handleSort}
+                                id={GRADE_SORT_BTN_ID}
+                            >
+                                Grade(g)
+                                <TableSortLabel
+                                    active
+                                    IconComponent={ArrowDropDown}
+                                    direction={gradeDirection}
+                                />
+                            </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
