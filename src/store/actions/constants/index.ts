@@ -10,3 +10,4 @@ export const SET_CARD_PACKS = 'packs/SET-CARD-PACKS';
 export const SET_SORT_PACKS = 'packs/SET-SORT-PACKS';
 export const SET_CURRENT_PAGE = 'packs/SET-CURRENT-PAGE';
 export const SET_PACKS_TOTAL_COUNT = 'packs/SET-PACKS-TOTAL-COUNT';
+export const SET_PAGE_COUNT = 'packs/SET-PAGE-COUNT';

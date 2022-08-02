@@ -12,6 +12,7 @@ export {
     setSortPacksAC,
     setCurrentPageAC,
     setPacksTotalCountAC,
+    setPageCountAC,
 } from './packs';
 export type {
     AuthActionsType,

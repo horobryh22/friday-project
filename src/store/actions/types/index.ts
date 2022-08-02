@@ -13,3 +13,4 @@ export type { SetCardPacksType } from './SetCardPacksType';
 export type { SetSortPacksType } from './SetSortPacksType';
 export type { SetCurrentPageType } from './SetCurrentPageType';
 export type { SetPacksTotalCount } from './SetPacksTotalCount';
+export type { SetPageCountType } from './SetPageCountType';

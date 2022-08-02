@@ -2,12 +2,14 @@ import {
     SET_CARD_PACKS,
     SET_CURRENT_PAGE,
     SET_PACKS_TOTAL_COUNT,
+    SET_PAGE_COUNT,
     SET_SORT_PACKS,
 } from './constants';
 import {
     SetCardPacksType,
     SetCurrentPageType,
     SetPacksTotalCount,
+    SetPageCountType,
     SetSortPacksType,
 } from './types';
 
@@ -38,5 +40,12 @@ export const setPacksTotalCountAC = (packsTotalCount: number): SetPacksTotalCoun
     return {
         type: SET_PACKS_TOTAL_COUNT,
         payload: { packsTotalCount },
+    } as const;
+};
+
+export const setPageCountAC = (pageCount: number): SetPageCountType => {
+    return {
+        type: SET_PAGE_COUNT,
+        payload: { pageCount },
     } as const;
 };

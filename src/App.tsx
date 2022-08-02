@@ -12,6 +12,7 @@ import {
     selectIsInitialized,
     selectIsUserAuth,
     selectPage,
+    selectPageCount,
     selectSortPacks,
 } from 'store/selectors';
 import { ReturnComponentType } from 'types';
@@ -25,6 +26,7 @@ const App = (): ReturnComponentType => {
 
     const sortPacks = useTypedSelector(selectSortPacks);
     const page = useTypedSelector(selectPage);
+    const pageCount = useTypedSelector(selectPageCount);
 
     useEffect(() => {
         dispatch(initializedApp());
@@ -34,7 +36,7 @@ const App = (): ReturnComponentType => {
         if (isUserAuth) {
             dispatch(fetchPacks());
         }
-    }, [isUserAuth, sortPacks, page]);
+    }, [isUserAuth, sortPacks, page, pageCount]);
 
     if (!isInitialized) {
         return (

@@ -4,6 +4,7 @@ import {
     SET_CARD_PACKS,
     SET_CURRENT_PAGE,
     SET_PACKS_TOTAL_COUNT,
+    SET_PAGE_COUNT,
     SET_SORT_PACKS,
 } from 'store/actions/constants';
 import { PacksActionsType } from 'store/actions/types';
@@ -27,6 +28,14 @@ export const packsReducer = (
     action: PacksActionsType,
 ): PacksStateType => {
     switch (action.type) {
+        case SET_PAGE_COUNT:
+            return {
+                ...state,
+                searchParams: {
+                    ...state.searchParams,
+                    pageCount: action.payload.pageCount,
+                },
+            };
         case SET_PACKS_TOTAL_COUNT:
             return { ...state, cardPacksTotalCount: action.payload.packsTotalCount };
         case SET_CURRENT_PAGE:

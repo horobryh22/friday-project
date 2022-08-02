@@ -4,6 +4,7 @@ import { Pagination } from '@mui/material';
 
 import classes from './CustomPagination.module.css';
 
+import { CustomSelect } from 'components';
 import { useAppDispatch, useTypedSelector } from 'hooks';
 import { setCurrentPageAC } from 'store/actions';
 import { selectPacksTotalCount, selectPage, selectPageCount } from 'store/selectors';
@@ -33,6 +34,11 @@ export const CustomPagination = (): ReturnComponentType => {
                 shape="circular"
                 color="primary"
             />
+            <div className={classes.selectWrapper}>
+                <span>Show</span>
+                <CustomSelect />
+                <span>cards per page</span>
+            </div>
         </div>
     );
 };
