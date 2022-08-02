@@ -10,3 +10,4 @@ export const SET_CARD_PACKS = 'packs/SET-CARD-PACKS';
 export const SET_SORT_PACKS = 'packs/SET-SORT-PACKS';
 export const SET_CARDS = 'cards/SET_CARDS';
 export const SET_SORT_CARDS = 'cards/SET_SORT_CARDS';
+export const SET_CARDS_SEARCH_PARAMS = '/cards/SET_CARDS_SEARCH_PARAMS';

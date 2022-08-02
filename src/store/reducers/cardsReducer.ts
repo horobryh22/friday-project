@@ -28,10 +28,10 @@ export const cardsReducer = (
     switch (action.type) {
         case 'cards/SET_CARDS':
             return { ...state, ...action.payload.data };
-        case 'cards/SET_SORT_CARDS':
+        case '/cards/SET_CARDS_SEARCH_PARAMS':
             return {
                 ...state,
-                searchParams: { ...state.searchParams, sortCards: action.payload.sort },
+                searchParams: { ...state.searchParams, ...action.payload.searchParams },
             };
         default:
             return state;

@@ -14,15 +14,33 @@ import {
 
 import { CardsListPropsType } from 'components/cartdList/types';
 import { OrderDirectionType } from 'components/mainTableRow/types';
+import { useAppDispatch } from 'hooks';
 import s from 'pages/cards/Cards.module.css';
+import { setCardsSearchParamsAC } from 'store/actions/cards';
+import { fetchCards } from 'store/middlewares';
 import { ReturnComponentType } from 'types';
 
-export const CardsList = ({ cards }: CardsListPropsType): ReturnComponentType => {
+export const CardsList = ({
+    cards,
+    cardsPack_id,
+}: CardsListPropsType): ReturnComponentType => {
+    const dispatch = useAppDispatch();
+
     const [direction, setDirection] = useState<OrderDirectionType>('asc');
+    const updateFieldName = 'updated';
 
     const handleSort = (): void => {
+        const sortCards =
+            direction === 'asc' ? `1${updateFieldName}` : `0${updateFieldName}`;
+
         setDirection(direction === 'asc' ? 'desc' : 'asc');
+        dispatch(setCardsSearchParamsAC({ cardsPack_id, sortCards }));
+        dispatch(fetchCards({ cardsPack_id, sortCards }));
     };
+
+    if (cards.length === 0) {
+        return <h3>Oops, cards not added yet</h3>;
+    }
 
     return (
         <Paper sx={{ width: '100%' }} style={{ marginTop: '25px' }}>

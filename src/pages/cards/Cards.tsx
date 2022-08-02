@@ -22,8 +22,6 @@ export const Cards = (): ReturnComponentType => {
         dispatch(fetchCards({ cardsPack_id } as SearchParamsCardsType));
     }, []);
 
-    console.log(cards);
-
     return (
         <>
             <div className={classes.BackToPack}>
@@ -36,7 +34,7 @@ export const Cards = (): ReturnComponentType => {
                     Back to packs List
                 </div>
             </div>
-            <CardsList cards={cards} />
+            <CardsList cards={cards} cardsPack_id={cardsPack_id || ''} />
         </>
     );
 };
