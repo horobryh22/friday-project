@@ -5,4 +5,5 @@ export type CardsTopContentType = {
     buttonName: string;
     isButtonNeed: boolean;
     children?: React.ReactNode;
+    callback: () => void;
 };

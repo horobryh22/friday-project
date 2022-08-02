@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react';
 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import SearchIcon from '@mui/icons-material/Search';
+import { InputAdornment, TextField } from '@mui/material';
 import { NavLink, useParams } from 'react-router-dom';
 
 import s from './Cards.module.css';
 
 import { SearchParamsCardsType } from 'api/types';
+import { CardsTopContent } from 'components';
 import { CardsList } from 'components/cartdList/CardsList';
 import { useAppDispatch, useTypedSelector } from 'hooks';
 import { fetchCards } from 'store/middlewares';
@@ -22,6 +25,10 @@ export const Cards = (): ReturnComponentType => {
     const currentPuck = packs.find(pack => pack._id === cardsPack_id);
     const currentPuckName = currentPuck?.name || '';
 
+    const addNewCard = (): void => {
+        console.log('clicked');
+    };
+
     console.log(currentPuckName);
 
     useEffect(() => {
@@ -34,7 +41,26 @@ export const Cards = (): ReturnComponentType => {
                 <ArrowBackIcon />
                 <span>Back to packs List</span>
             </NavLink>
-            <h3 className={s.title}>{currentPuckName}</h3>
+            <CardsTopContent
+                title={currentPuckName}
+                buttonName="Add new card"
+                isButtonNeed
+                callback={addNewCard}
+            >
+                <TextField
+                    name="searchCard"
+                    variant="outlined"
+                    label="Search"
+                    fullWidth
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <SearchIcon />
+                            </InputAdornment>
+                        ),
+                    }}
+                />
+            </CardsTopContent>
             <CardsList cards={cards} cardsPack_id={cardsPack_id || ''} />
         </div>
     );
