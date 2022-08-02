@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CardsTopContent, TableComponent } from 'components';
+import { CardsTopContent, CustomPagination, TableComponent } from 'components';
 import { ReturnComponentType } from 'types';
 
 export const PacksList = (): ReturnComponentType => {
@@ -8,6 +8,7 @@ export const PacksList = (): ReturnComponentType => {
         <>
             <CardsTopContent title="Packs list" buttonName="Add new pack" isButtonNeed />
             <TableComponent />
+            <CustomPagination />
         </>
     );
 };

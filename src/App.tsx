@@ -6,8 +6,14 @@ import { Header, Links, RoutesApp, SnackBar } from 'components';
 import { PROGRESS_STYLE } from 'constant';
 import { REQUEST_STATUS } from 'enums';
 import { useAppDispatch, useTypedSelector } from 'hooks';
-import { initializedApp, fetchPacks } from 'store/middlewares';
-import { selectAppStatus, selectIsInitialized, selectIsUserAuth } from 'store/selectors';
+import { fetchPacks, initializedApp } from 'store/middlewares';
+import {
+    selectAppStatus,
+    selectIsInitialized,
+    selectIsUserAuth,
+    selectPage,
+    selectSortPacks,
+} from 'store/selectors';
 import { ReturnComponentType } from 'types';
 
 const App = (): ReturnComponentType => {
@@ -17,7 +23,8 @@ const App = (): ReturnComponentType => {
     const isUserAuth = useTypedSelector(selectIsUserAuth);
     const isInitialized = useTypedSelector(selectIsInitialized);
 
-    const sortPacks = useTypedSelector(state => state.packs.searchParams.sortPacks);
+    const sortPacks = useTypedSelector(selectSortPacks);
+    const page = useTypedSelector(selectPage);
 
     useEffect(() => {
         dispatch(initializedApp());
@@ -27,7 +34,7 @@ const App = (): ReturnComponentType => {
         if (isUserAuth) {
             dispatch(fetchPacks());
         }
-    }, [isUserAuth, sortPacks]);
+    }, [isUserAuth, sortPacks, page]);
 
     if (!isInitialized) {
         return (

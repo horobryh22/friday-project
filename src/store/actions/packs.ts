@@ -1,5 +1,15 @@
-import { SET_CARD_PACKS, SET_SORT_PACKS } from './constants';
-import { SetCardPacksType, SetSortPacksType } from './types';
+import {
+    SET_CARD_PACKS,
+    SET_CURRENT_PAGE,
+    SET_PACKS_TOTAL_COUNT,
+    SET_SORT_PACKS,
+} from './constants';
+import {
+    SetCardPacksType,
+    SetCurrentPageType,
+    SetPacksTotalCount,
+    SetSortPacksType,
+} from './types';
 
 import { CardType, SortTypes } from 'api/types';
 
@@ -14,5 +24,19 @@ export const setSortPacksAC = (sort: SortTypes): SetSortPacksType => {
     return {
         type: SET_SORT_PACKS,
         payload: { sort },
+    } as const;
+};
+
+export const setCurrentPageAC = (page: number): SetCurrentPageType => {
+    return {
+        type: SET_CURRENT_PAGE,
+        payload: { page },
+    } as const;
+};
+
+export const setPacksTotalCountAC = (packsTotalCount: number): SetPacksTotalCount => {
+    return {
+        type: SET_PACKS_TOTAL_COUNT,
+        payload: { packsTotalCount },
     } as const;
 };

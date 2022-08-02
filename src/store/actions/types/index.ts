@@ -11,3 +11,5 @@ export type { SetIsInitializedType } from './SetIsInitializedType';
 export type { setUsersACType } from './SetUsersType';
 export type { SetCardPacksType } from './SetCardPacksType';
 export type { SetSortPacksType } from './SetSortPacksType';
+export type { SetCurrentPageType } from './SetCurrentPageType';
+export type { SetPacksTotalCount } from './SetPacksTotalCount';

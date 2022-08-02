@@ -4,11 +4,16 @@ import {
     selectAppStatus,
     selectAuthError,
     selectAuthInfo,
+    selectAuthUserId,
     selectCardPacks,
     selectGoToLogin,
     selectIsEmailSent,
     selectIsInitialized,
     selectIsUserAuth,
+    selectPacksTotalCount,
+    selectPage,
+    selectPageCount,
+    selectSortPacks,
 } from 'store/selectors';
 import { AppRootState } from 'store/types';
 
@@ -27,7 +32,9 @@ beforeEach(() => {
             isUserAuth: false,
             goToLogin: false,
             isEmailSent: false,
-            authUserData: {} as AuthUserDataType,
+            authUserData: {
+                _id: 'test id',
+            } as AuthUserDataType,
         },
         packs: {
             cardPacks: [],
@@ -35,11 +42,12 @@ beforeEach(() => {
                 packName: '',
                 min: 1,
                 max: 4,
-                sortPacks: '',
+                sortPacks: '1updated',
                 page: 1,
                 pageCount: 4,
                 user_id: '',
             },
+            cardPacksTotalCount: 100,
         },
     };
 });
@@ -91,6 +99,39 @@ describe('select', () => {
         const cardPacks = selectCardPacks(state);
 
         expect(cardPacks).toEqual([]);
+    });
+
+    test('authUserId', () => {
+        const authUserId = selectAuthUserId(state);
+
+        expect(authUserId).toBe('test id');
+    });
+
+    test('page', () => {
+        const page = selectPage(state);
+
+        expect(page).toBe(1);
+    });
+
+    test('pageCount', () => {
+        const pageCount = selectPageCount(state);
+
+        // eslint-disable-next-line no-magic-numbers
+        expect(pageCount).toBe(4);
+    });
+
+    test('packsTotalCount', () => {
+        const packsTotalCount = selectPacksTotalCount(state);
+
+        // eslint-disable-next-line no-magic-numbers
+        expect(packsTotalCount).toBe(100);
+    });
+
+    test('sortPacks', () => {
+        const sortPacks = selectSortPacks(state);
+
+        // eslint-disable-next-line no-magic-numbers
+        expect(sortPacks).toBe('1updated');
     });
 });
 
