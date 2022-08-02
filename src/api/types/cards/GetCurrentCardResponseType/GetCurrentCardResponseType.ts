@@ -1,7 +1,7 @@
-import { GetCardType } from 'api/types/cards/GetCardType/GetCardType';
+import { GetCardsType } from 'api/types/cards/GetCardType/GetCardsType';
 
 export type GetCurrentCardResponseType = {
-    cards: GetCardType[];
+    cards: GetCardsType[];
     cardsTotalCount: number;
     maxGrade: number;
     minGrade: number;

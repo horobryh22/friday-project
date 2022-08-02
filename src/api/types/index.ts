@@ -10,6 +10,6 @@ export type {
     RegisterUserDataType,
     RegisterUserErrorType,
 } from './auth/RegisterUserTypes/RegisterUserTypes';
-export type { GetCardType } from './cards/GetCardType/GetCardType';
-export type { GetCurrentCardRequestType } from './cards/GetCurrentCardRequestType/GetCurrentCardRequestType';
+export type { GetCardsType } from 'api/types/cards/GetCardType/GetCardsType';
+export type { SearchParamsCardsType } from 'api/types/cards/GetCurrentCardRequestType/SearchParamsCardsType';
 export type { GetCurrentCardResponseType } from './cards/GetCurrentCardResponseType/GetCurrentCardResponseType';

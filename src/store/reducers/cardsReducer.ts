@@ -1,28 +1,33 @@
-import { GetCardType } from 'api/types';
+import { GetCardsType } from 'api/types';
 import { CardsActionType } from 'store/actions/types';
 
-const initialState: GetCardType = {
-    answer: '',
-    question: '',
-    cardsPack_id: '',
-    grade: 0,
-    shots: 0,
-    user_id: '',
-    created: '',
-    updated: '',
-    _id: '',
-    comments: '',
-    type: '',
-    rating: 0,
-    more_id: '',
-    __v: 0,
+const initialState: GetCardsType = {
+    cards: [],
+    searchParams: {
+        cardAnswer: '',
+        cardQuestion: '',
+        cardsPack_id: '',
+        min: 0,
+        max: 4,
+        sortCards: '0update',
+        page: 1,
+        pageCount: 8,
+    },
+    cardsTotalCount: 0,
+    maxGrade: 0,
+    minGrade: 0,
+    page: 0,
+    pageCount: 0,
+    packUserId: '',
 };
 
 export const cardsReducer = (
     state = initialState,
     action: CardsActionType,
-): GetCardType => {
+): GetCardsType => {
     switch (action.type) {
+        case 'cards/SET_CARDS':
+            return { ...state, ...action.payload.data };
         default:
             return state;
     }

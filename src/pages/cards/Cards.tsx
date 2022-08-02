@@ -1,16 +1,28 @@
 import React, { useEffect } from 'react';
 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { Table, TextField } from '@mui/material';
+import { useParams } from 'react-router-dom';
 
+import { SearchParamsCardsType } from 'api/types';
+import { CardsList } from 'components/cartdList/CardsList';
+import { useAppDispatch, useTypedSelector } from 'hooks';
 import classes from 'pages/profile/Profile.module.css';
+import { fetchCards } from 'store/middlewares';
+import { selectCards } from 'store/selectors';
 import { ReturnComponentType } from 'types';
 
-const cardsPackId = '62e7e69c9b70793ad87b163f';
-const pageTitle = 'Name pack';
-
 export const Cards = (): ReturnComponentType => {
-    useEffect(() => {}, [console.log(cardsPackId)]);
+    const dispatch = useAppDispatch();
+
+    const { cardsPack_id } = useParams();
+
+    const cards = useTypedSelector(selectCards);
+
+    useEffect(() => {
+        dispatch(fetchCards({ cardsPack_id } as SearchParamsCardsType));
+    }, []);
+
+    console.log(cards);
 
     return (
         <>
@@ -24,9 +36,7 @@ export const Cards = (): ReturnComponentType => {
                     Back to packs List
                 </div>
             </div>
-            <h1>{pageTitle}</h1>
-            <TextField fullWidth label="Search" />
-            <Table />
+            <CardsList cards={cards} />
         </>
     );
 };

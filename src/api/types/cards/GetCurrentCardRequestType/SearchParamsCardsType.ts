@@ -1,4 +1,4 @@
-export type GetCurrentCardRequestType = {
+export type SearchParamsCardsType = {
     cardAnswer?: string;
     cardQuestion?: string;
     cardsPack_id: string;

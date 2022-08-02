@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { TableRowsType } from './types';
 
+import { CardType } from 'api/types';
 import { ActionImages } from 'components';
 import { PACK_COLUMNS } from 'constant';
 import { ReturnComponentType } from 'types';
@@ -14,10 +15,12 @@ export const TableRows = ({ rows }: TableRowsType): ReturnComponentType => {
 
     const handleClick = (
         event: React.MouseEvent<HTMLElement, MouseEvent>,
-        cardsPackId: string,
+        row: CardType,
     ): void => {
         event.stopPropagation();
         if (event.currentTarget.tagName === 'TR') {
+            const cardsPackId = row._id;
+
             navigate(`${cardsPackId}`);
         }
     };
@@ -28,7 +31,7 @@ export const TableRows = ({ rows }: TableRowsType): ReturnComponentType => {
                 role="checkbox"
                 tabIndex={-1}
                 key={row._id}
-                onClick={e => handleClick(e, row._id)}
+                onClick={e => handleClick(e, row)}
             >
                 {PACK_COLUMNS.map(column => {
                     let value;

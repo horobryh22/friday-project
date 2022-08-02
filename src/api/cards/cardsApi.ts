@@ -1,18 +1,18 @@
 import { instance } from 'api/config';
-import { GetCurrentCardRequestType, GetCurrentCardResponseType } from 'api/types';
-import { GetCardType } from 'api/types/cards/GetCardType/GetCardType';
+import { SearchParamsCardsType } from 'api/types';
+import { GetCardsType } from 'api/types/cards/GetCardType/GetCardsType';
 
 export const cardsApi = {
     getCard: ({
         cardsPack_id,
-        cardAnswer = 'english',
+        cardAnswer,
         min,
         max,
-        sortCards = '0grade',
-        page = 1,
+        sortCards,
+        page,
         pageCount,
-    }: GetCurrentCardRequestType) => {
-        return instance.get<GetCurrentCardResponseType>('cards/card', {
+    }: SearchParamsCardsType) => {
+        return instance.get<GetCardsType>('cards/card', {
             params: {
                 cardsPack_id,
                 cardAnswer,
@@ -24,7 +24,7 @@ export const cardsApi = {
             },
         });
     },
-    createCard: (card: GetCardType) => {
+    createCard: (card: GetCardsType) => {
         return instance.post('cards/card', card);
     },
     deleteCard: (id: string) => {
@@ -32,7 +32,7 @@ export const cardsApi = {
             params: { id },
         });
     },
-    updateCard: (card: GetCardType) => {
+    updateCard: (card: GetCardsType) => {
         return instance.put('cards/card', card);
     },
 };
