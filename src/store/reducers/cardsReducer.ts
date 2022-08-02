@@ -11,7 +11,7 @@ const initialState: GetCardsType = {
         max: 4,
         sortCards: '0update',
         page: 1,
-        pageCount: 8,
+        pageCount: 100,
     },
     cardsTotalCount: 0,
     maxGrade: 0,
