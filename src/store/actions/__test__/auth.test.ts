@@ -5,7 +5,8 @@ import {
     setGoToLoginAC,
     setIsEmailSentAC,
     setIsUserAuthAC,
-} from 'store/actions/auth';
+    setAuthUserDataAC,
+} from 'store/actions';
 import { authReducer } from 'store/reducers';
 import { AuthStateType } from 'store/reducers/types';
 
@@ -51,5 +52,33 @@ describe('auth reducer', () => {
         const endState = authReducer(startState, setGoToLoginAC(true));
 
         expect(endState.goToLogin).toBeTruthy();
+    });
+
+    test('correct user data should be set in the state', () => {
+        const userData = {
+            _id: 'some id',
+            avatar: 'url',
+            isAdmin: false,
+            rememberMe: true,
+            name: 'Petya',
+            email: 'someemail@yandex.ru',
+            verified: true,
+            publicCardPacksCount: 10,
+        };
+
+        const endState = authReducer(startState, setAuthUserDataAC(userData));
+
+        expect(endState.authUserData).not.toEqual({});
+        expect(endState.authUserData._id).toBe('some id');
+        expect(Object.keys(endState.authUserData)).toEqual([
+            '_id',
+            'avatar',
+            'isAdmin',
+            'rememberMe',
+            'name',
+            'email',
+            'verified',
+            'publicCardPacksCount',
+        ]);
     });
 });

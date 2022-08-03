@@ -10,6 +10,7 @@ import {
     selectIsEmailSent,
     selectIsInitialized,
     selectIsUserAuth,
+    selectPackName,
     selectPacksTotalCount,
     selectPage,
     selectPageCount,
@@ -39,7 +40,7 @@ beforeEach(() => {
         packs: {
             cardPacks: [],
             searchParams: {
-                packName: '',
+                packName: 'Some pack name',
                 min: 1,
                 max: 4,
                 sortPacks: '1updated',
@@ -130,8 +131,14 @@ describe('select', () => {
     test('sortPacks', () => {
         const sortPacks = selectSortPacks(state);
 
-        // eslint-disable-next-line no-magic-numbers
         expect(sortPacks).toBe('1updated');
+    });
+
+    test('packName', () => {
+        const packName = selectPackName(state);
+
+        // eslint-disable-next-line no-magic-numbers
+        expect(packName).toBe('Some pack name');
     });
 });
 

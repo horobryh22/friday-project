@@ -11,3 +11,4 @@ export { selectPage } from './selectPage/selectPage';
 export { selectPageCount } from './selectPageCount/selectPageCount';
 export { selectPacksTotalCount } from './selectPacksTotalCount/selectPacksTotalCount';
 export { selectSortPacks } from './selectSortPacks/selectSortPacks';
+export { selectPackName } from './selectPackName/selectPackName';

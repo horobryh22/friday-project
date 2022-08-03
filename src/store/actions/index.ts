@@ -4,7 +4,7 @@ export {
     setIsEmailSentAC,
     setIsUserAuthAC,
     setGoToLoginAC,
-    setUsersAC,
+    setAuthUserDataAC,
 } from './auth';
 export { setAppStatusAC, setIsInitializedAC } from './app';
 export {
@@ -13,6 +13,7 @@ export {
     setCurrentPageAC,
     setPacksTotalCountAC,
     setPageCountAC,
+    setPackNameAC,
 } from './packs';
 export type {
     AuthActionsType,

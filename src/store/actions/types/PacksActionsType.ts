@@ -1,6 +1,7 @@
 import {
     setCardPacksAC,
     setCurrentPageAC,
+    setPackNameAC,
     setPacksTotalCountAC,
     setPageCountAC,
     setSortPacksAC,
@@ -11,4 +12,5 @@ export type PacksActionsType =
     | ReturnType<typeof setSortPacksAC>
     | ReturnType<typeof setCurrentPageAC>
     | ReturnType<typeof setPacksTotalCountAC>
-    | ReturnType<typeof setPageCountAC>;
+    | ReturnType<typeof setPageCountAC>
+    | ReturnType<typeof setPackNameAC>;
